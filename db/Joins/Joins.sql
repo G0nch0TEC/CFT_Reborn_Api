@@ -1,0 +1,25 @@
+-- ==================================
+-- UNIONES
+-- ==================================
+
+ALTER TABLE CLIENTES 
+	ADD CONSTRAINT Fk_Cliente
+		FOREIGN KEY (UserKey) REFERENCES USUARIO(CD_User);
+        
+ALTER TABLE CLIENTES
+	ADD CONSTRAINT Fk_Cliente2
+    FOREIGN KEY (CL_estado) REFERENCES ESTADO(Ky_Estado);
+    
+ALTER TABLE PRODUCTO
+	ADD CONSTRAINT Fk_Producto
+		FOREIGN KEY (Categoria) REFERENCES CATEGORIA(ID_CAT);
+        
+ALTER TABLE PEDIDO
+	ADD CONSTRAINT FK_Pedido
+		FOREIGN KEY (ClientKey) REFERENCES CLIENTES(CD_Client);
+        
+ALTER TABLE DETALLE_PEDIDO
+	ADD CONSTRAINT FK_Detalle_Pedido
+		FOREIGN KEY (PedidoKey) REFERENCES PEDIDO(KyPedido),
+	ADD CONSTRAINT FK_Detalle_Pedido2
+		FOREIGN KEY (ProductKey) REFERENCES PRODUCTO(KeyProduct)
