@@ -2,6 +2,7 @@ package Reborn_backend.Backend.domain.entities;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "producto")
@@ -26,4 +27,7 @@ public class Producto {
 
     @Column(name = "estado", nullable = false)
     private Byte estado = 1;
+
+    @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+    private List<Detalle_Pedido> detalle_pedidos;
 }

@@ -3,6 +3,7 @@ package Reborn_backend.Backend.domain.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="clientes")
@@ -32,4 +33,7 @@ public class Clientes {
 
     @Column(name="Fecha_Update", nullable = false)
     private LocalDateTime fechaupdate;
+
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    private List<Pedido> pedidos;
 }
