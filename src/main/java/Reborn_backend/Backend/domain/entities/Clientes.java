@@ -33,7 +33,7 @@ public class Clientes {
     @Column(name="Fecha_create", updatable = false, nullable = false)
     private LocalDateTime fechacreate;
 
-    @Column(name="Fecha_Update", nullable = false)
+    @Column(name="Fecha_Update")
     private LocalDateTime fechaupdate;
 
     //Foreign Key
