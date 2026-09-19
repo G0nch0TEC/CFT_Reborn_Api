@@ -17,6 +17,20 @@ public class Estado {
     @Column(name = "estado", nullable = false)
     private Byte estado = 1;
 
+    // Foreign Key
     @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
     private List<Clientes> clientes;
+
+    // Getter and setter
+
+    public Integer getKyestado() {return kyestado;}
+    public void setKyestado(Integer kyestado) {this.kyestado = kyestado;}
+
+    public String getKynombre() {return kynombre;}
+    public void setKynombre(String kynombre) {this.kynombre = kynombre;}
+
+    public Byte getEstado() {return estado;}
+    public void setEstado(Byte estado) {this.estado = estado;}
+
+    public List<Clientes> getClientes() {return clientes;}
 }

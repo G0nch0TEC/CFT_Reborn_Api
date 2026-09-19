@@ -9,9 +9,10 @@ import java.util.List;
 @Table(name="clientes")
 public class Clientes {
 
+    //Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UserKey", nullable = false)
-    private Usuario usuario;
+    private Usuario userkey;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,7 @@ public class Clientes {
     @Column(name = "CL_descripcion", length = 150)
     private String cldescripcion;
 
+    //Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CL_estado", nullable = false)
     private Estado estado;
@@ -34,6 +36,29 @@ public class Clientes {
     @Column(name="Fecha_Update", nullable = false)
     private LocalDateTime fechaupdate;
 
+    //Foreign Key
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<Pedido> pedidos;
+
+    // Getter and setter
+
+    public Usuario getUserkey() {return userkey;}
+    public void setUserkey(Usuario userkey) {this.userkey = userkey;}
+
+    public Integer getcdclient() {return cdclient;}
+    public void setcdclient(Integer cdclient) {this.cdclient = cdclient;}
+
+    public String getClname() {return clname;}
+    public void setClname(String clname) {this.clname = clname;}
+
+    public String getCldescripcion() {return cldescripcion;}
+    public void setCldescripcion(String cldescripcion) {this.cldescripcion = cldescripcion;}
+
+    public Estado getEstado() {return estado;}
+    public void setEstado(Estado estado) {this.estado = estado;}
+
+    public LocalDateTime getFechacreate() {return fechacreate;}
+    public LocalDateTime getFechaupdate() {return fechaupdate;}
+
+    public List<Pedido> getPedidos() {return pedidos;}
 }
