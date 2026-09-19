@@ -11,7 +11,7 @@ public class Categoria {
     @Column(name = "ID_CAT", nullable = false)
     private Integer idcat;
 
-    @Column(name = "nombre", length = 50)
+    @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
 
     @Column(name = "estado", nullable = false)

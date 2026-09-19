@@ -14,12 +14,12 @@ public class Detalle_Pedido {
 
     // Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PedidoKey")
+    @JoinColumn(name = "PedidoKey", nullable = false)
     private Pedido pedido;
 
     // Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProductKey")
+    @JoinColumn(name = "ProductKey", nullable = false)
     private Producto producto;
 
     @Column(name = "Cantidad", nullable = false)

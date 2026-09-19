@@ -12,11 +12,11 @@ public class Clientes {
     //Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UserKey", nullable = false)
-    private Usuario userkey;
+    private Usuario usuario;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CD_Client")
+    @Column(name = "CD_Client", nullable = false)
     private Integer cdclient;
 
     @Column(name = "CL_name", nullable = false, length = 50)
@@ -41,9 +41,8 @@ public class Clientes {
     private List<Pedido> pedidos;
 
     // Getter and setter
-
-    public Usuario getUserkey() {return userkey;}
-    public void setUserkey(Usuario userkey) {this.userkey = userkey;}
+    public Usuario getUsuario() {return usuario;}
+    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 
     public Integer getcdclient() {return cdclient;}
     public void setcdclient(Integer cdclient) {this.cdclient = cdclient;}

@@ -10,7 +10,7 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="CD_User")
+    @Column(name="CD_User", nullable = false)
     private Integer cduser;
 
     @Column(name="Usuario", nullable = false, length = 50)

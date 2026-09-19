@@ -8,10 +8,10 @@ import java.util.List;
 public class Estado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Ky_Estado")
+    @Column(name = "Ky_Estado", nullable = false)
     private Integer kyestado;
 
-    @Column(name = "Ky_Nombre", length = 50)
+    @Column(name = "Ky_Nombre", length = 50, nullable = false)
     private String kynombre;
 
     @Column(name = "estado", nullable = false)
