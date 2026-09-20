@@ -4,10 +4,9 @@ import Reborn_backend.Backend.domain.entities.Clientes;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class ClientRepo {
@@ -24,21 +23,26 @@ public class ClientRepo {
         }
     }
 
-    // Encontrar por id
-    @Transactional(readOnly = true)
-    public Optional<Clientes> findbyid(Integer cdclient){
-        Clientes clientes = em.find(Clientes.class, cdclient);
-        return Optional.ofNullable(clientes);
-    }
-
     // Mostrar todos los clientes
-    @Transactional(readOnly = true)
     public List<Clientes> findall() {
         return em.createQuery("SELECT c FROM Clientes c", Clientes.class).getResultList();
     }
 
-    // Eliminar por id
-    public void deletebyid(Integer cdclient){
+    //Buscar por nombre
+    public List<Clientes> findByNombre(String nombre){
+        return em.createQuery("SELECT c FROM Clientes c WHERE c.clname LIKE :clname", Clientes.class)
+                .setParameter("clname", "%"+nombre+"%")
+                .getResultList();
+    }
+
+    //Buscar por estado
+    public List<Clientes> findByEstado(Integer kyestado){
+        return em.createQuery("SELECT c FROM Clientes c WHERE c.estado.kyestado = :kyestado", Clientes.class)
+                .setParameter("kyestado", kyestado).getResultList();
+    }
+
+    //Eliminar por id
+    public void deleteById(Integer cdclient){
         Clientes clientes = em.find(Clientes.class, cdclient);
         if (clientes != null){
             em.remove(clientes);
