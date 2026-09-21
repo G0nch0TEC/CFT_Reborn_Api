@@ -1,6 +1,7 @@
 package Reborn_backend.Backend.Infraestructure.repository;
 
 import Reborn_backend.Backend.domain.entities.Clientes;
+import Reborn_backend.Backend.domain.repository.ClientRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -9,11 +10,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ClientRepo {
+public class ClientRepo implements ClientRepository {
     @PersistenceContext
     private EntityManager em;
 
     //Guardar cliente
+    @Override
     public Clientes save(Clientes clientes){
         if (clientes.getcdclient() == null){
             em.persist(clientes);
@@ -24,11 +26,13 @@ public class ClientRepo {
     }
 
     // Mostrar todos los clientes
+    @Override
     public List<Clientes> findall() {
         return em.createQuery("SELECT c FROM Clientes c", Clientes.class).getResultList();
     }
 
     //Buscar por nombre
+    @Override
     public List<Clientes> findByNombre(String nombre){
         return em.createQuery("SELECT c FROM Clientes c WHERE c.clname LIKE :clname", Clientes.class)
                 .setParameter("clname", "%"+nombre+"%")
@@ -36,12 +40,14 @@ public class ClientRepo {
     }
 
     //Buscar por estado
+    @Override
     public List<Clientes> findByEstado(Integer kyestado){
         return em.createQuery("SELECT c FROM Clientes c WHERE c.estado.kyestado = :kyestado", Clientes.class)
                 .setParameter("kyestado", kyestado).getResultList();
     }
 
     //Eliminar por id
+    @Override
     public void deleteById(Integer cdclient){
         Clientes clientes = em.find(Clientes.class, cdclient);
         if (clientes != null){
