@@ -1,7 +1,7 @@
 package Reborn_backend.Backend.presentation.controller.cliente;
 
-import Reborn_backend.Backend.domain.dto.request.CrearClienteRequest;
-import Reborn_backend.Backend.domain.dto.response.CrearClienteResponse;
+import Reborn_backend.Backend.domain.dto.request.cliente.CrearClienteRequest;
+import Reborn_backend.Backend.domain.dto.response.cliente.CrearClienteResponse;
 import Reborn_backend.Backend.domain.entities.Clientes;
 import Reborn_backend.Backend.domain.use_case.clientes.CrearClienteCase;
 import org.springframework.http.HttpStatus;

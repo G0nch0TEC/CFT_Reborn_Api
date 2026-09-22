@@ -1,7 +1,7 @@
 package Reborn_backend.Backend.presentation.controller.usuario;
 
-import Reborn_backend.Backend.domain.dto.request.RegisterUserRequest;
-import Reborn_backend.Backend.domain.dto.response.RegisterUserResponse;
+import Reborn_backend.Backend.domain.dto.request.usuario.RegisterUserRequest;
+import Reborn_backend.Backend.domain.dto.response.usuario.RegisterUserResponse;
 import Reborn_backend.Backend.domain.entities.Usuario;
 import Reborn_backend.Backend.domain.use_case.usuario.RegistrarUsuarioCase;
 import org.springframework.http.HttpStatus;

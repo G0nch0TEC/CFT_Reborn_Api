@@ -1,7 +1,7 @@
 package Reborn_backend.Backend.presentation.controller.categoria;
 
-import Reborn_backend.Backend.domain.dto.request.CrearCategoriaRequest;
-import Reborn_backend.Backend.domain.dto.response.CrearCategoriaResponse;
+import Reborn_backend.Backend.domain.dto.request.categoria.CrearCategoriaRequest;
+import Reborn_backend.Backend.domain.dto.response.categoria.CrearCategoriaResponse;
 import Reborn_backend.Backend.domain.entities.Categoria;
 import Reborn_backend.Backend.domain.use_case.categoria.CrearCategoriaCase;
 import org.springframework.http.HttpStatus;

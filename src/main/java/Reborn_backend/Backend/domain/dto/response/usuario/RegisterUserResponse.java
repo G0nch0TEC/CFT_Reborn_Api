@@ -1,4 +1,4 @@
-package Reborn_backend.Backend.domain.dto.response;
+package Reborn_backend.Backend.domain.dto.response.usuario;
 
 public class RegisterUserResponse {
     private String usuario;

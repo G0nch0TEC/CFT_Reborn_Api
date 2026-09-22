@@ -1,4 +1,4 @@
-package Reborn_backend.Backend.domain.dto.request;
+package Reborn_backend.Backend.domain.dto.request.categoria;
 
 public class CrearCategoriaRequest {
     private String nombre;
