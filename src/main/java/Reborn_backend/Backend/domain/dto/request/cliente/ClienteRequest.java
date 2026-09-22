@@ -1,12 +1,12 @@
 package Reborn_backend.Backend.domain.dto.request.cliente;
 
-public class CrearClienteRequest {
+public class ClienteRequest {
     private String nombre;
     private String descripcion;
 
-    public CrearClienteRequest(){}
+    public ClienteRequest(){}
 
-    public CrearClienteRequest(String nombre, String descripcion){
+    public ClienteRequest(String nombre, String descripcion){
         this.nombre = nombre;
         this.descripcion = descripcion;
     }

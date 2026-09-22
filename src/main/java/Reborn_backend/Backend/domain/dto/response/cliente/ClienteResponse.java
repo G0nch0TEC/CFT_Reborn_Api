@@ -1,13 +1,13 @@
 package Reborn_backend.Backend.domain.dto.response.cliente;
 
-public class CrearClienteResponse {
+public class ClienteResponse {
 
     private String usuario;
     private String descripcion;
 
-    public CrearClienteResponse() {}
+    public ClienteResponse() {}
 
-    public CrearClienteResponse(String usuario, String descripcion) {
+    public ClienteResponse(String usuario, String descripcion) {
         this.usuario = usuario;
         this.descripcion = descripcion;
     }

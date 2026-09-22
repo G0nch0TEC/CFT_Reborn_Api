@@ -1,11 +1,11 @@
 package Reborn_backend.Backend.domain.dto.request.categoria;
 
-public class CrearCategoriaRequest {
+public class CategoriaRequest {
     private String nombre;
 
-    public CrearCategoriaRequest(){}
+    public CategoriaRequest(){}
 
-    public CrearCategoriaRequest(String nombre){
+    public CategoriaRequest(String nombre){
         this.nombre = nombre;
     }
 

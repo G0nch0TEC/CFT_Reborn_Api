@@ -1,7 +1,7 @@
 package Reborn_backend.Backend.presentation.controller.usuario;
 
-import Reborn_backend.Backend.domain.dto.request.usuario.RegisterUserRequest;
-import Reborn_backend.Backend.domain.dto.response.usuario.RegisterUserResponse;
+import Reborn_backend.Backend.domain.dto.request.usuario.UserRequest;
+import Reborn_backend.Backend.domain.dto.response.usuario.UserResponse;
 import Reborn_backend.Backend.domain.entities.Usuario;
 import Reborn_backend.Backend.domain.use_case.usuario.RegistrarUsuarioCase;
 import org.springframework.http.HttpStatus;
@@ -24,21 +24,21 @@ public class UsuarioController {
     }
 
 
-    @PostMapping("/registrar")
-    public ResponseEntity<RegisterUserResponse> registrar(@RequestBody RegisterUserRequest registerUserRequest) {
+    @PostMapping
+    public ResponseEntity<UserResponse> registrar(@RequestBody UserRequest userRequest) {
 
         Usuario usuario = new Usuario(); // Crear nuevo objeto dentro de Usuario
-        usuario.setUsuario(registerUserRequest.getUsuario());
-        usuario.setCorreo(registerUserRequest.getCorreo());
-        usuario.setPassword(registerUserRequest.getPassword());
+        usuario.setUsuario(userRequest.getUsuario());
+        usuario.setCorreo(userRequest.getCorreo());
+        usuario.setPassword(userRequest.getPassword());
 
         Usuario userRegister = registrarUsuarioCase.registrarUsuario(usuario);//Guardamos Usuario
 
         // Devolvemos Respuesta
-        RegisterUserResponse registerUserResponse = new RegisterUserResponse(
+        UserResponse userResponse = new UserResponse(
                 userRegister.getUsuario(),
                 userRegister.getCorreo()
         );
-        return ResponseEntity.status(HttpStatus.CREATED).body(registerUserResponse);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
     }
 }

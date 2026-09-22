@@ -1,7 +1,7 @@
 package Reborn_backend.Backend.presentation.controller.cliente;
 
-import Reborn_backend.Backend.domain.dto.request.cliente.CrearClienteRequest;
-import Reborn_backend.Backend.domain.dto.response.cliente.CrearClienteResponse;
+import Reborn_backend.Backend.domain.dto.request.cliente.ClienteRequest;
+import Reborn_backend.Backend.domain.dto.response.cliente.ClienteResponse;
 import Reborn_backend.Backend.domain.entities.Clientes;
 import Reborn_backend.Backend.domain.use_case.clientes.CrearClienteCase;
 import org.springframework.http.HttpStatus;
@@ -23,19 +23,19 @@ public class ClienteController {
         this.crearClienteCase = crearClienteCase;
     }
 
-    @PostMapping("/crear")
-    public ResponseEntity<CrearClienteResponse>  crearCliente(@RequestBody CrearClienteRequest crearClienteRequest) {
+    @PostMapping
+    public ResponseEntity<ClienteResponse>  crearCliente(@RequestBody ClienteRequest clienteRequest) {
 
         Clientes clientes = new Clientes();
-        clientes.setClname(crearClienteRequest.getNombre());
-        clientes.setCldescripcion(crearClienteRequest.getDescripcion());
+        clientes.setClname(clienteRequest.getNombre());
+        clientes.setCldescripcion(clienteRequest.getDescripcion());
 
         Clientes createClient = crearClienteCase.CrearCliente(clientes);
 
-        CrearClienteResponse crearClienteResponse = new CrearClienteResponse(
+        ClienteResponse clienteResponse = new ClienteResponse(
                 createClient.getClname(),
                 createClient.getCldescripcion()
         );
-        return ResponseEntity.status(HttpStatus.CREATED).body(crearClienteResponse);
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteResponse);
     }
 }

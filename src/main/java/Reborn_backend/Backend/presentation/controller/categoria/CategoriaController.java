@@ -1,37 +1,51 @@
 package Reborn_backend.Backend.presentation.controller.categoria;
 
-import Reborn_backend.Backend.domain.dto.request.categoria.CrearCategoriaRequest;
-import Reborn_backend.Backend.domain.dto.response.categoria.CrearCategoriaResponse;
+import Reborn_backend.Backend.domain.dto.request.categoria.CategoriaRequest;
+import Reborn_backend.Backend.domain.dto.response.categoria.CategoriaResponse;
 import Reborn_backend.Backend.domain.entities.Categoria;
 import Reborn_backend.Backend.domain.use_case.categoria.CrearCategoriaCase;
+import Reborn_backend.Backend.domain.use_case.categoria.ObtenerCategoriaCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/categoria")
 public class CategoriaController {
 
     private final CrearCategoriaCase crearCategoriaCase;
+    private final ObtenerCategoriaCase obtenerCategoriaCase;
 
-    public CategoriaController(CrearCategoriaCase crearCategoriaCase){
+    public CategoriaController(CrearCategoriaCase crearCategoriaCase, ObtenerCategoriaCase obtenerCategoriaCase){
         this.crearCategoriaCase = crearCategoriaCase;
+        this.obtenerCategoriaCase = obtenerCategoriaCase;
     }
 
-    @PostMapping("/crear")
-    public ResponseEntity<CrearCategoriaResponse> crearCategoria(@RequestBody CrearCategoriaRequest crearCategoriaRequest) {
+    @PostMapping
+    public ResponseEntity<CategoriaResponse> crearCategoria(@RequestBody CategoriaRequest categoriaRequest) {
 
         Categoria categoria = new Categoria();
-        categoria.setNombre(crearCategoriaRequest.getNombre());
+        categoria.setNombre(categoriaRequest.getNombre());
 
         Categoria crearCategoria = crearCategoriaCase.crearCategoria(categoria);
 
-        CrearCategoriaResponse crearCategoriaResponse = new CrearCategoriaResponse(
+        CategoriaResponse categoriaResponse = new CategoriaResponse(
+                crearCategoria.getIdcat(),
                 crearCategoria.getNombre()
         );
-        return ResponseEntity.status(HttpStatus.CREATED).body(crearCategoriaResponse);
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoriaResponse>> listarCategoria() {
+        List<Categoria> categorias = obtenerCategoriaCase.obtenerCategorias();
+
+        List<CategoriaResponse> categoriasResponse = categorias.stream()
+                .map(categoria -> new CategoriaResponse(categoria.getIdcat(), categoria.getNombre()))
+                .toList();
+
+        return ResponseEntity.status(HttpStatus.OK).body(categoriasResponse);
     }
 }

@@ -26,7 +26,7 @@ public class EstadoController {
         List<Estado> estados = obtenerEstadosCase.obtenerEstados();
 
         List<EstadoResponse> estadosResponse = estados.stream()
-                .map(estado -> new EstadoResponse(estado.getKynombre()))
+                .map(estado -> new EstadoResponse(estado.getKyestado(), estado.getKynombre()))
                 .toList();
 
         return ResponseEntity.ok(estadosResponse);

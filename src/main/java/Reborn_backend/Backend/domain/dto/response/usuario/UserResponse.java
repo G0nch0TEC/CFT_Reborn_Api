@@ -1,12 +1,12 @@
 package Reborn_backend.Backend.domain.dto.response.usuario;
 
-public class RegisterUserResponse {
+public class UserResponse {
     private String usuario;
     private String correo;
 
-    public RegisterUserResponse() {}
+    public UserResponse() {}
 
-    public RegisterUserResponse(String usuario, String correo) {
+    public UserResponse(String usuario, String correo) {
         this.usuario = usuario;
         this.correo = correo;
     }

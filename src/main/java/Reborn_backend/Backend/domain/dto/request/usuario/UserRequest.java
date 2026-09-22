@@ -1,13 +1,13 @@
 package Reborn_backend.Backend.domain.dto.request.usuario;
 
-public class RegisterUserRequest {
+public class UserRequest {
     private String usuario;
     private String correo;
     private String password;
 
-    public RegisterUserRequest() {}
+    public UserRequest() {}
 
-    public RegisterUserRequest(String usuario, String correo, String password) {
+    public UserRequest(String usuario, String correo, String password) {
         this.usuario = usuario;
         this.correo = correo;
         this.password = password;
