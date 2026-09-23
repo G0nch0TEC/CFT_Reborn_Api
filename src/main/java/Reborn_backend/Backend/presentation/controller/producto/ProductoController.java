@@ -4,20 +4,23 @@ import Reborn_backend.Backend.domain.dto.request.producto.ProductoRequest;
 import Reborn_backend.Backend.domain.dto.response.producto.ProductoResponse;
 import Reborn_backend.Backend.domain.entities.Producto;
 import Reborn_backend.Backend.domain.use_case.producto.CrearProductoCase;
+import Reborn_backend.Backend.domain.use_case.producto.ObtenerProductoCase;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/producto")
 public class ProductoController {
     private final CrearProductoCase crearProductoCase;
+    private final ObtenerProductoCase obtenerProductoCase;
 
-    public ProductoController(CrearProductoCase crearProductoCase){
+    public ProductoController(CrearProductoCase crearProductoCase, ObtenerProductoCase obtenerProductoCase){
         this.crearProductoCase = crearProductoCase;
+        this.obtenerProductoCase = obtenerProductoCase;
     }
 
     @PostMapping
@@ -37,5 +40,16 @@ public class ProductoController {
                 productoGuardado.getPrecio()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(productoResponse);
+    }
+
+    @GetMapping("/categoria/{idcat}")
+    public ResponseEntity<List<ProductoResponse>> obtenerProducto(@PathVariable Integer idcat) {
+        List<Producto> productos = obtenerProductoCase.obtenerProductos();
+
+        List<ProductoResponse> productoResponses = productos.stream()
+                .map(producto -> new ProductoResponse(producto.getKeyproduct(), producto.getNombre(), producto.getDescripcion(), producto.getPrecio()))
+                .toList();
+
+        return ResponseEntity.status(HttpStatus.OK).body(productoResponses);
     }
 }
