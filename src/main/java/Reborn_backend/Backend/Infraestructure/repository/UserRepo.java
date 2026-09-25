@@ -19,7 +19,7 @@ public class UserRepo implements UserRepository {
     // Guardar Usuario
     @Override
     public Usuario save(Usuario usuario) {
-        if (usuario.getcduser() == null){
+        if (usuario.getId() == null){
             em.persist(usuario);
             return usuario;
         } else {
@@ -29,16 +29,16 @@ public class UserRepo implements UserRepository {
 
     // Encontrar por correo
     @Override
-    public Optional<Usuario> findByCorreo(String correo) {
-        return em.createQuery("SELECT u FROM Usuario u WHERE u.correo = :correo", Usuario.class)
-                .setParameter("correo", correo).getResultStream().findFirst();
+    public Optional<Usuario> findByEmail(String email) {
+        return em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email", Usuario.class)
+                .setParameter("email", email).getResultStream().findFirst();
     }
 
     // Verificar si correo ya existe
     @Override
-    public boolean existsByCorreo(String correo) {
-        Long count = em.createQuery("SELECT count(u) FROM Usuario u WHERE u.correo = :correo", Long.class)
-                .setParameter("correo", correo)
+    public boolean existsByEmail(String email) {
+        Long count = em.createQuery("SELECT count(u) FROM Usuario u WHERE u.email = :email", Long.class)
+                .setParameter("email", email)
                 .getSingleResult();
         return count > 0;
     }
