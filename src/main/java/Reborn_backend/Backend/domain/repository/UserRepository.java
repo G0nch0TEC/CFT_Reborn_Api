@@ -8,8 +8,8 @@ public interface UserRepository {
 
     Usuario save(Usuario usuario);
 
-    Optional<Usuario> findByEmail(String correo);
+    Optional<Usuario> findByEmail(String email);
 
-    boolean existsByEmail(String correo);
+    boolean existsByEmail(String email);
 
 }
