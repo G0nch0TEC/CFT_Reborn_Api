@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ObtenerProductoCase {
+public class GetProductByCatalogCase {
     private final ProductRepository productRepository;
 
-    public ObtenerProductoCase(ProductRepository productRepository){
+    public GetProductByCatalogCase(ProductRepository productRepository){
         this.productRepository = productRepository;
     }
 
-    public List<Producto> obtenerProductos(){
-        return productRepository.findAll();
+    public List<Producto> getProductByCatalog(Integer idCategoria){
+        return productRepository.findByCategoria(idCategoria);
     }
 }

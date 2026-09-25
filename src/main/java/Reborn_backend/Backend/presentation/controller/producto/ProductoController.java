@@ -4,9 +4,8 @@ import Reborn_backend.Backend.domain.dto.request.producto.ProductoRequest;
 import Reborn_backend.Backend.domain.dto.response.producto.ProductoResponse;
 import Reborn_backend.Backend.domain.entities.Producto;
 import Reborn_backend.Backend.domain.use_case.producto.CrearProductoCase;
-import Reborn_backend.Backend.domain.use_case.producto.ObtenerProductoCase;
+import Reborn_backend.Backend.domain.use_case.producto.GetProductByCatalogCase;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +15,11 @@ import java.util.List;
 @RequestMapping("/producto")
 public class ProductoController {
     private final CrearProductoCase crearProductoCase;
-    private final ObtenerProductoCase obtenerProductoCase;
+    private final GetProductByCatalogCase getProductByCatalogCase;
 
-    public ProductoController(CrearProductoCase crearProductoCase, ObtenerProductoCase obtenerProductoCase){
+    public ProductoController(CrearProductoCase crearProductoCase, GetProductByCatalogCase getProductByCatalogCase){
         this.crearProductoCase = crearProductoCase;
-        this.obtenerProductoCase = obtenerProductoCase;
+        this.getProductByCatalogCase = getProductByCatalogCase;
     }
 
     @PostMapping
@@ -43,8 +42,8 @@ public class ProductoController {
     }
 
     @GetMapping("/categoria/{idcat}")
-    public ResponseEntity<List<ProductoResponse>> obtenerProducto(@PathVariable Integer idcat) {
-        List<Producto> productos = obtenerProductoCase.obtenerProductos();
+    public ResponseEntity<List<ProductoResponse>> obtenerProductosPorCategoria(@PathVariable Integer idcat) {
+        List<Producto> productos = getProductByCatalogCase.getProductByCatalog(idcat);
 
         List<ProductoResponse> productoResponses = productos.stream()
                 .map(producto -> new ProductoResponse(producto.getKeyproduct(), producto.getNombre(), producto.getDescripcion(), producto.getPrecio()))
