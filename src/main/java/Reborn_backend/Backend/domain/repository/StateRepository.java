@@ -9,5 +9,5 @@ public interface StateRepository {
 
     List<Estado> findAll();
 
-    Optional<Estado> findById(Integer kyestado);
+    Optional<Estado> findById(Integer id);
 }

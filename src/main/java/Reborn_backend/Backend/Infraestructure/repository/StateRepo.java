@@ -22,8 +22,8 @@ public class StateRepo implements StateRepository {
     }
 
     //Buscar por id
-    public Optional<Estado> findById(Integer kyestado) {
-        Estado estado = em.find(Estado.class, kyestado);
+    public Optional<Estado> findById(Integer id) {
+        Estado estado = em.find(Estado.class, id);
         return Optional.ofNullable(estado);
     }
 }

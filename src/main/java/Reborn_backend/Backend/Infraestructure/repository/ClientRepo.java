@@ -17,7 +17,7 @@ public class ClientRepo implements ClientRepository {
     //Guardar cliente
     @Override
     public Clientes save(Clientes clientes){
-        if (clientes.getcdclient() == null){
+        if (clientes.getId() == null){
             em.persist(clientes);
             return clientes;
         } else {
@@ -34,22 +34,22 @@ public class ClientRepo implements ClientRepository {
     //Buscar por nombre
     @Override
     public List<Clientes> findByNombre(String nombre){
-        return em.createQuery("SELECT c FROM Clientes c WHERE c.clname LIKE :clname", Clientes.class)
-                .setParameter("clname", "%"+nombre+"%")
+        return em.createQuery("SELECT c FROM Clientes c WHERE c.nombre LIKE :nombre", Clientes.class)
+                .setParameter("nombre", "%"+nombre+"%")
                 .getResultList();
     }
 
     //Buscar por estado
     @Override
-    public List<Clientes> findByEstado(Integer kyestado){
-        return em.createQuery("SELECT c FROM Clientes c WHERE c.estado.kyestado = :kyestado", Clientes.class)
-                .setParameter("kyestado", kyestado).getResultList();
+    public List<Clientes> findByEstado(Integer idEstado){
+        return em.createQuery("SELECT c FROM Clientes c WHERE c.estado.id = :id", Clientes.class)
+                .setParameter("id", idEstado).getResultList();
     }
 
     //Eliminar por id
     @Override
-    public void deleteById(Integer cdclient){
-        Clientes clientes = em.find(Clientes.class, cdclient);
+    public void deleteById(Integer id){
+        Clientes clientes = em.find(Clientes.class, id);
         if (clientes != null){
             em.remove(clientes);
         }

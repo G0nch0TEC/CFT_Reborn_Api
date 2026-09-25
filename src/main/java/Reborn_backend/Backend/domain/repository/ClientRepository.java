@@ -12,7 +12,7 @@ public interface ClientRepository {
 
     List<Clientes> findByNombre(String nombre);
 
-    List<Clientes> findByEstado(Integer kyestado);
+    List<Clientes> findByEstado(Integer estado);
 
-    void deleteById(Integer cdclient);
+    void deleteById(Integer id);
 }

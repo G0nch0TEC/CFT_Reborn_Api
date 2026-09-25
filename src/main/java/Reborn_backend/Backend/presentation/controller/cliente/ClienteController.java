@@ -27,14 +27,14 @@ public class ClienteController {
     public ResponseEntity<ClienteResponse>  crearCliente(@RequestBody ClienteRequest clienteRequest) {
 
         Clientes clientes = new Clientes();
-        clientes.setClname(clienteRequest.getNombre());
-        clientes.setCldescripcion(clienteRequest.getDescripcion());
+        clientes.setNombre(clienteRequest.getNombre());
+        clientes.setDescripcion(clienteRequest.getDescripcion());
 
         Clientes createClient = crearClienteCase.CrearCliente(clientes);
 
         ClienteResponse clienteResponse = new ClienteResponse(
-                createClient.getClname(),
-                createClient.getCldescripcion()
+                createClient.getNombre(),
+                createClient.getDescripcion()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteResponse);
     }
