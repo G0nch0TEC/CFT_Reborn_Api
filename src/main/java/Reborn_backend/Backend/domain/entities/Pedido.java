@@ -3,7 +3,6 @@ package Reborn_backend.Backend.domain.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "pedido")

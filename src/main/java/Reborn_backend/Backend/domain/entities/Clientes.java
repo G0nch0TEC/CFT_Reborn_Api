@@ -40,6 +40,9 @@ public class Clientes {
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<Pedido> pedidos;
 
+    @OneToMany(mappedBy = "pago", fetch = FetchType.LAZY)
+    private List<Pago>  pagos;
+
     // Getters y Setters
     public Usuario getUsuario() {return usuario;}
     public void setUsuario(Usuario usuario) {this.usuario = usuario;}
@@ -60,4 +63,5 @@ public class Clientes {
     public LocalDateTime getFechaActualizacion() {return fechaActualizacion;}
 
     public List<Pedido> getPedidos() {return pedidos;}
+    public List<Pago> getPagos() {return pagos;}
 }
