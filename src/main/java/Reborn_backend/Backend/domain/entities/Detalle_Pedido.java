@@ -9,31 +9,31 @@ import java.math.BigDecimal;
 public class Detalle_Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "KyDetalle", nullable = false)
-    private Integer kydetalle;
+    @Column(name = "det_id", nullable = false)
+    private Integer id;
 
     // Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PedidoKey", nullable = false)
+    @JoinColumn(name = "det_ped_id", nullable = false)
     private Pedido pedido;
 
     // Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProductKey", nullable = false)
+    @JoinColumn(name = "det_prod_id", nullable = false)
     private Producto producto;
 
-    @Column(name = "Cantidad", nullable = false)
+    @Column(name = "det_cantidad", nullable = false)
     private Integer cantidad;
 
-    @Column(name = "Precio_Unit", nullable = false, precision = 10, scale = 2)
-    private BigDecimal preciounit;
+    @Column(name = "det_precio_unitario", nullable = false, precision = 10, scale = 2)
+    private BigDecimal preciounitario;
 
-    @Column(name = "SubTotal", nullable = false, precision = 10, scale = 2)
+    @Column(name = "det_subtotal", nullable = false, precision = 10, scale = 2)
     private BigDecimal subtotal;
 
     // Getter and setter
-    public Integer getKydetalle() {return kydetalle;}
-    public void setKydetalle(Integer kydetalle) {this.kydetalle = kydetalle;}
+    public Integer getId() {return id;}
+    public void setId(Integer kydetalle) {this.id = id;}
 
     public Pedido getPedido() {return pedido;}
     public void setPedido(Pedido pedido) {this.pedido = pedido;}
@@ -44,8 +44,8 @@ public class Detalle_Pedido {
     public Integer getCantidad() {return cantidad;}
     public void setCantidad(Integer cantidad) {this.cantidad = cantidad;}
 
-    public BigDecimal getPreciounit() {return preciounit;}
-    public void setPreciounit(BigDecimal preciounit) {this.preciounit = preciounit;}
+    public BigDecimal getPreciounitario() {return preciounitario;}
+    public void setPreciounitario(BigDecimal preciounitario) {this.preciounitario = preciounitario;}
 
     public BigDecimal getSubtotal() {return subtotal;}
     public void setSubtotal(BigDecimal subtotal) {this.subtotal = subtotal;}

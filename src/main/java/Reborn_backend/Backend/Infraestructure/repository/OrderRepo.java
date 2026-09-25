@@ -17,7 +17,7 @@ public class OrderRepo implements OrderRepository {
     //Guardar pedido
     @Override
     public Pedido save(Pedido pedido) {
-        if (pedido.getKypedido() == null) {
+        if (pedido.getId() == null) {
             em.persist(pedido);
             return pedido;
         } else {
@@ -27,15 +27,15 @@ public class OrderRepo implements OrderRepository {
 
     //Encontrar por id
     @Override
-    public Optional<Pedido> findById(Integer kypedido) {
-        Pedido pedido = em.find(Pedido.class, kypedido);
+    public Optional<Pedido> findById(Integer id) {
+        Pedido pedido = em.find(Pedido.class, id);
         return Optional.ofNullable(pedido);
     }
 
     //Encontrar por cliente
     @Override
-    public List<Pedido> findByCliente(Integer cdclient) {
-        return em.createQuery("SELECT p FROM Pedido p WHERE p.cliente.cdclient = :cdclient",  Pedido.class)
-                .setParameter("cdclient", cdclient).getResultList();
+    public List<Pedido> findByCliente(Integer idCliente) {
+        return em.createQuery("SELECT p FROM Pedido p WHERE p.cliente.id = :id",  Pedido.class)
+                .setParameter("id", idCliente).getResultList();
     }
 }

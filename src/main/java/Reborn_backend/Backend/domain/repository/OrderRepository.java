@@ -9,7 +9,7 @@ public interface OrderRepository {
 
     Pedido save(Pedido pedido);
 
-    Optional<Pedido> findById(Integer kypedido);
+    Optional<Pedido> findById(Integer id);
 
-    List<Pedido> findByCliente(Integer cdclient);
+    List<Pedido> findByCliente(Integer idClient);
 }

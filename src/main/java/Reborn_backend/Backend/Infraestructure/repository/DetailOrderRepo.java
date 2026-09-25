@@ -17,7 +17,7 @@ public class DetailOrderRepo implements DetailOrderRepository {
     //Guardar detalle pedido
     @Override
     public Detalle_Pedido save(Detalle_Pedido dp){
-        if (dp.getKydetalle()==null){
+        if (dp.getId()==null){
             em.persist(dp);
             return dp;
         } else  {
@@ -27,15 +27,15 @@ public class DetailOrderRepo implements DetailOrderRepository {
 
     //Encontrar por pedido
     @Override
-    public List<Detalle_Pedido> findByCliente(Integer kypedido) {
-        return em.createQuery("SELECT dp FROM Detalle_Pedido dp WHERE dp.pedido.kypedido = :kypedido",  Detalle_Pedido.class)
-                .setParameter("kypedido", kypedido).getResultList();
+    public List<Detalle_Pedido> findByPedido(Integer idPedido) {
+        return em.createQuery("SELECT dp FROM Detalle_Pedido dp WHERE dp.pedido.id = :id",  Detalle_Pedido.class)
+                .setParameter("id", idPedido).getResultList();
     }
 
     //Eliminar por id
     @Override
     public void DeleteById(Detalle_Pedido dp){
-        Detalle_Pedido detalle_pedido = em.find(Detalle_Pedido.class, dp.getKydetalle());
+        Detalle_Pedido detalle_pedido = em.find(Detalle_Pedido.class, dp.getId());
         if (detalle_pedido!=null){
             em.remove(detalle_pedido);
         }

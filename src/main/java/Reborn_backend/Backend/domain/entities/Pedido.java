@@ -10,20 +10,20 @@ import java.util.List;
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "KyPedido", nullable = false)
-    private Integer kypedido;
+    @Column(name = "ped_id", nullable = false)
+    private Integer id;
 
     // Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ClientKey", nullable = false)
+    @JoinColumn(name = "ped_cli_id", nullable = false)
     private Clientes cliente;
 
-    @Column(name="FechaPedido", updatable = false, nullable = false)
+    @Column(name="ped_fecha", updatable = false, nullable = false)
     private LocalDateTime fechapedido;
 
     // Getter and setter
-    public Integer getKypedido() {return kypedido;}
-    public void setKypedido(Integer kypedido) {this.kypedido = kypedido;}
+    public Integer getId() {return id;}
+    public void setId(Integer id) {this.id = id;}
 
     public Clientes getCliente() {return cliente;}
     public void setCliente(Clientes cliente) {this.cliente = cliente;}

@@ -8,7 +8,7 @@ public interface DetailOrderRepository {
 
     Detalle_Pedido save(Detalle_Pedido dp);
 
-    List<Detalle_Pedido> findByCliente(Integer kypedido);
+    List<Detalle_Pedido> findByPedido(Integer idPedido);
 
     void DeleteById(Detalle_Pedido dp);
 }
