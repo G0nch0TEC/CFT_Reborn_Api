@@ -32,7 +32,7 @@ public class CategoriaController {
         Categoria crearCategoria = crearCategoriaCase.crearCategoria(categoria);
 
         CategoriaResponse categoriaResponse = new CategoriaResponse(
-                crearCategoria.getIdcat(),
+                crearCategoria.getId(),
                 crearCategoria.getNombre()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaResponse);
@@ -43,7 +43,7 @@ public class CategoriaController {
         List<Categoria> categorias = obtenerCategoriaCase.obtenerCategorias();
 
         List<CategoriaResponse> categoriasResponse = categorias.stream()
-                .map(categoria -> new CategoriaResponse(categoria.getIdcat(), categoria.getNombre()))
+                .map(categoria -> new CategoriaResponse(categoria.getId(), categoria.getNombre()))
                 .toList();
 
         return ResponseEntity.status(HttpStatus.OK).body(categoriasResponse);

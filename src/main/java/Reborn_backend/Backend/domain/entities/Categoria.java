@@ -8,13 +8,13 @@ import java.util.List;
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CAT", nullable = false)
-    private Integer idcat;
+    @Column(name = "cat_id", nullable = false)
+    private Integer id;
 
-    @Column(name = "nombre", length = 50, nullable = false)
+    @Column(name = "cat_nombre", length = 50, nullable = false)
     private String nombre;
 
-    @Column(name = "estado", nullable = false)
+    @Column(name = "cat_estado", nullable = false)
     private Byte estado = 1;
 
     // Foreign Key
@@ -23,8 +23,8 @@ public class Categoria {
 
     // Getter and setter
 
-    public Integer getIdcat() {return idcat;}
-    public void setIdcat(Integer idcat) {this.idcat = idcat;}
+    public Integer getId() {return id;}
+    public void setId(Integer id) {this.id = id;}
 
     public String getNombre() {return nombre;}
     public void setNombre(String nombre) {this.nombre = nombre;}

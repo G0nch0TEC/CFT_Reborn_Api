@@ -1,13 +1,13 @@
 package Reborn_backend.Backend.domain.dto.response.categoria;
 
 public class CategoriaResponse {
-    private Integer idcat;
+    private Integer id;
     private String nombre;
 
     public CategoriaResponse(){}
 
-    public CategoriaResponse(Integer idcat, String nombre) {
-        this.idcat = idcat;
+    public CategoriaResponse(Integer id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
     }
 
@@ -18,6 +18,6 @@ public class CategoriaResponse {
         this.nombre = nombre;
     }
 
-    public Integer getIdcat() {return idcat;}
-    public void setIdcat(Integer idcat) {this.idcat = idcat;}
+    public Integer getId() {return id;}
+    public void setId(Integer id) {this.id = id;}
 }

@@ -10,9 +10,9 @@ public interface CategoryRepository {
 
     List<Categoria> findAll();
 
-    Optional<Categoria> findById(Integer idcat);
+    Optional<Categoria> findById(Integer id);
 
     boolean existsByNombre(String nombre);
 
-    void deleteById(Integer idcat);
+    void deleteById(Integer id);
 }

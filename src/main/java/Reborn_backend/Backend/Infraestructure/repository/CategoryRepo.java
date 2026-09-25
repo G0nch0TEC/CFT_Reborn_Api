@@ -18,7 +18,7 @@ public class CategoryRepo implements CategoryRepository {
     // Guardar una categoria
     @Override
     public Categoria save(Categoria categoria) {
-        if (categoria.getIdcat() == null) {
+        if (categoria.getId() == null) {
             em.persist(categoria);
             return categoria;
         } else  {
@@ -34,8 +34,8 @@ public class CategoryRepo implements CategoryRepository {
 
     //Buscar por id
     @Override
-    public Optional<Categoria> findById(Integer idcat) {
-        Categoria categoria = em.find(Categoria.class, idcat);
+    public Optional<Categoria> findById(Integer id) {
+        Categoria categoria = em.find(Categoria.class, id);
         return  Optional.ofNullable(categoria);
     }
 
@@ -50,8 +50,8 @@ public class CategoryRepo implements CategoryRepository {
 
     //Eliminar categoria
     @Override
-    public void deleteById(Integer idcat) {
-        Categoria categoria = em.find(Categoria.class, idcat);
+    public void deleteById(Integer id) {
+        Categoria categoria = em.find(Categoria.class, id);
         if (categoria != null) {
             em.remove(categoria);
         }
