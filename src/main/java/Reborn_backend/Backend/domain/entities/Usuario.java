@@ -10,26 +10,26 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="CD_User", nullable = false)
-    private Integer cduser;
+    @Column(name="usr_id", nullable = false)
+    private Integer id;
 
-    @Column(name="Usuario", nullable = false, length = 50)
-    private String usuario;
+    @Column(name="usr_nombre", nullable = false, length = 50)
+    private String nombre;
 
-    @Column(name="User_Email", nullable = false, length = 120, unique = true)
-    private String correo;
+    @Column(name="usr_email", nullable = false, length = 120, unique = true)
+    private String email;
 
-    @Column(name="Password", nullable = false, length = 255)
+    @Column(name="usr_password", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "Estado", nullable = false)
+    @Column(name = "usr_estado", nullable = false)
     private Byte estado = 1;
 
-    @Column(name="Fecha_create", updatable = false, nullable = false)
-    private LocalDateTime fechacreate;
+    @Column(name="usr_fecha_creacion", updatable = false, nullable = false)
+    private LocalDateTime fechaCreacion;
 
-    @Column(name="Fecha_Update", nullable = false)
-    private LocalDateTime fechaupdate;
+    @Column(name="usr_fecha_actualizacion", nullable = false)
+    private LocalDateTime fechaActualizacion;
 
     // Foreign Key
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
@@ -37,14 +37,14 @@ public class Usuario {
 
 
     // Getter and Setter
-    public Integer getcduser() {return cduser;}
-    public void setcduser(Integer cduser) {this.cduser = cduser;}
+    public Integer getId() {return id;}
+    public void setId(Integer id) {this.id = id;}
 
-    public String getUsuario() {return usuario;}
-    public void setUsuario(String usuario) {this.usuario = usuario;}
+    public String getNombre() {return nombre;}
+    public void setNombre(String usuario) {this.nombre = nombre;}
 
-    public String getCorreo() {return correo;}
-    public void setCorreo(String correo) {this.correo = correo;}
+    public String getEmail() {return email;}
+    public void setEmail(String correo) {this.email = email;}
 
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
@@ -52,8 +52,8 @@ public class Usuario {
     public Byte getEstado() {return estado;}
     public void setEstado(Byte estado) {this.estado = estado;}
 
-    public LocalDateTime getFechacreate() {return fechacreate;}
-    public LocalDateTime getFechaupdate() {return fechaupdate;}
+    public LocalDateTime getFechaCreacion() {return fechaCreacion;}
+    public LocalDateTime getFechaActualizacion() {return fechaActualizacion;}
 
     public List<Clientes> getClientes() {return clientes;}
 }

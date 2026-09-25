@@ -1,23 +1,23 @@
 package Reborn_backend.Backend.domain.dto.request.usuario;
 
 public class UserRequest {
-    private String usuario;
-    private String correo;
+    private String nombre;
+    private String email;
     private String password;
 
     public UserRequest() {}
 
-    public UserRequest(String usuario, String correo, String password) {
-        this.usuario = usuario;
-        this.correo = correo;
+    public UserRequest(String nombre, String email, String password) {
+        this.nombre = nombre;
+        this.email = email;
         this.password = password;
     }
 
-    public String getUsuario() {return usuario;}
-    public void setUsuario(String usuario) {this.usuario = usuario;}
+    public String getNombre() {return nombre;}
+    public void setNombre(String nombre) {this.nombre = nombre;}
 
-    public String getCorreo() {return correo;}
-    public void setCorreo(String correo) {this.correo = correo;}
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
 
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}

@@ -18,7 +18,7 @@ public class RegistrarUsuarioCase {
 
     @Transactional
     public Usuario registrarUsuario(Usuario usuario) {
-        if (userRepository.existsByCorreo(usuario.getCorreo())) {
+        if (userRepository.existsByCorreo(usuario.getEmail())) {
             throw new RuntimeException("Este correo ya esta registrado");
         }
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));

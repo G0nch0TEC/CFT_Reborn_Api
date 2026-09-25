@@ -28,16 +28,16 @@ public class UsuarioController {
     public ResponseEntity<UserResponse> registrar(@RequestBody UserRequest userRequest) {
 
         Usuario usuario = new Usuario(); // Crear nuevo objeto dentro de Usuario
-        usuario.setUsuario(userRequest.getUsuario());
-        usuario.setCorreo(userRequest.getCorreo());
+        usuario.setNombre(userRequest.getNombre());
+        usuario.setEmail(userRequest.getEmail());
         usuario.setPassword(userRequest.getPassword());
 
         Usuario userRegister = registrarUsuarioCase.registrarUsuario(usuario);//Guardamos Usuario
 
         // Devolvemos Respuesta
         UserResponse userResponse = new UserResponse(
-                userRegister.getUsuario(),
-                userRegister.getCorreo()
+                userRegister.getNombre(),
+                userRegister.getEmail()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
     }
