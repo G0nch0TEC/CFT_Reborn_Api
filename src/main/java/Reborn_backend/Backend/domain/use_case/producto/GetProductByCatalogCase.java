@@ -14,7 +14,7 @@ public class GetProductByCatalogCase {
         this.productRepository = productRepository;
     }
 
-    public List<Producto> getProductByCatalog(Integer idCategoria){
-        return productRepository.findByCategoria(idCategoria);
+    public List<Producto> getProductByCatalog(Integer id){
+        return productRepository.findByCategoria(id);
     }
 }

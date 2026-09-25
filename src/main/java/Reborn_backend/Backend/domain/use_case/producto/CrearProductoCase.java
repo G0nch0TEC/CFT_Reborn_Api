@@ -19,8 +19,8 @@ public class CrearProductoCase {
     }
 
     @Transactional
-    public Producto crearProducto(Producto producto, Integer idCat){
-        Categoria categoria = categoryRepository.findById(idCat)
+    public Producto crearProducto(Producto producto, Integer id){
+        Categoria categoria = categoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
 
         producto.setCategoria(categoria);

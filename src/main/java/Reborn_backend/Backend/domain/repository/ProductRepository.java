@@ -12,5 +12,5 @@ public interface ProductRepository {
 
     List<Producto> findByCategoria(Integer categoria);
 
-    void deleteById(Integer keyproduct);
+    void deleteById(Integer id);
 }

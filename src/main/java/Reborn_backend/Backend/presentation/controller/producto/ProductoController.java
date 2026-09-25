@@ -33,7 +33,7 @@ public class ProductoController {
         Producto productoGuardado = crearProductoCase.crearProducto(producto, productoRequest.getIdCategoria());
 
         ProductoResponse productoResponse = new ProductoResponse(
-                productoGuardado.getKeyproduct(),
+                productoGuardado.getId(),
                 productoGuardado.getNombre(),
                 productoGuardado.getDescripcion(),
                 productoGuardado.getPrecio()
@@ -46,7 +46,7 @@ public class ProductoController {
         List<Producto> productos = getProductByCatalogCase.getProductByCatalog(idcat);
 
         List<ProductoResponse> productoResponses = productos.stream()
-                .map(producto -> new ProductoResponse(producto.getKeyproduct(), producto.getNombre(), producto.getDescripcion(), producto.getPrecio()))
+                .map(producto -> new ProductoResponse(producto.getId(), producto.getNombre(), producto.getDescripcion(), producto.getPrecio()))
                 .toList();
 
         return ResponseEntity.status(HttpStatus.OK).body(productoResponses);

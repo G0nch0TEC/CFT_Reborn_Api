@@ -16,7 +16,7 @@ public class ProductRepo implements ProductRepository {
     //Guardar producto
     @Override
     public Producto save(Producto producto) {
-        if (producto.getKeyproduct() == null){
+        if (producto.getId() == null){
             em.persist(producto);
             return producto;
         } else {
@@ -32,15 +32,15 @@ public class ProductRepo implements ProductRepository {
 
     //Ver por categoria
     @Override
-    public List<Producto> findByCategoria(Integer categoria) {
-        return em.createQuery("SELECT p FROM Producto p WHERE p.categoria.idcat = :categoria",  Producto.class)
-                .setParameter("categoria", categoria).getResultList();
+    public List<Producto> findByCategoria(Integer id) {
+        return em.createQuery("SELECT p FROM Producto p WHERE p.categoria.id = :id",  Producto.class)
+                .setParameter("id", id).getResultList();
     }
 
     //Eliminar por id
     @Override
-    public void deleteById(Integer keyproduct){
-        Producto producto = em.find(Producto.class, keyproduct);
+    public void deleteById(Integer id){
+        Producto producto = em.find(Producto.class, id);
         if (producto != null){
             em.remove(producto);
         }

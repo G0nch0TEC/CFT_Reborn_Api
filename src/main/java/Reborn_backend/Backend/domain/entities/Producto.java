@@ -9,24 +9,24 @@ import java.util.List;
 public class Producto {
     // Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Categoria", nullable = false)
+    @JoinColumn(name = "prod_cat_id", nullable = false)
     private Categoria categoria;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "KeyProduct", nullable = false)
-    private Integer keyproduct;
+    @Column(name = "prod_id", nullable = false)
+    private Integer id;
 
-    @Column(name = "Nombre", nullable = false, length = 80)
+    @Column(name = "prod_nombre", nullable = false, length = 80)
     private String nombre;
 
-    @Column(name = "Descripcion", length = 150)
+    @Column(name = "prod_descripcion", length = 150)
     private String descripcion;
 
-    @Column(name = "Precio", nullable = false, precision = 10, scale = 2)
+    @Column(name = "prod_precio", nullable = false, precision = 10, scale = 2)
     private BigDecimal precio;
 
-    @Column(name = "estado", nullable = false)
+    @Column(name = "prod_estado", nullable = false)
     private Byte estado = 1;
 
     // Foreign Key
@@ -37,8 +37,8 @@ public class Producto {
     public Categoria getCategoria() {return categoria;}
     public void setCategoria(Categoria categoria) {this.categoria = categoria;}
 
-    public Integer getKeyproduct() {return keyproduct;}
-    public void setKeyproduct(Integer keyproduct) {this.keyproduct = keyproduct;}
+    public Integer getId() {return id;}
+    public void setId(Integer id) {this.id = id;}
 
     public String getNombre() {return nombre;}
     public void setNombre(String nombre) {this.nombre = nombre;}
