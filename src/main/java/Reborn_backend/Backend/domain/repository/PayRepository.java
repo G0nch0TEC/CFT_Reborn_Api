@@ -2,16 +2,19 @@ package Reborn_backend.Backend.domain.repository;
 
 import Reborn_backend.Backend.domain.entities.Pago;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 public interface PayRepository {
 
-    public Pago save(Pago pago);
+     Pago save(Pago pago);
 
-    public List<Pago> findByClientId(Integer idClient);
+     List<Pago> findByClientId(Integer idClient);
 
-    public Optional<Pago> findById(Integer id);
+     Optional<Pago> findById(Integer id);
 
-    public void deleteById(Integer id);
+     void deleteById(Integer id);
+
+     BigDecimal sumMontoByClient(Integer idCliente);
 }

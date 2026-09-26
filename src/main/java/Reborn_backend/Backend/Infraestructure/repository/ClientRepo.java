@@ -1,6 +1,7 @@
 package Reborn_backend.Backend.Infraestructure.repository;
 
 import Reborn_backend.Backend.domain.entities.Clientes;
+import Reborn_backend.Backend.domain.entities.Producto;
 import Reborn_backend.Backend.domain.repository.ClientRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ClientRepo implements ClientRepository {
@@ -44,6 +46,13 @@ public class ClientRepo implements ClientRepository {
     public List<Clientes> findByEstado(Integer idEstado){
         return em.createQuery("SELECT c FROM Clientes c WHERE c.estado.id = :id", Clientes.class)
                 .setParameter("id", idEstado).getResultList();
+    }
+
+    //Buscar por id
+    @Override
+    public Optional<Clientes> findById(Integer id){
+        Clientes clientes = em.find(Clientes.class, id);
+        return Optional.ofNullable(clientes);
     }
 
     //Eliminar por id

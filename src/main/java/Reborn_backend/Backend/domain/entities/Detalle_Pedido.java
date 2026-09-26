@@ -33,7 +33,7 @@ public class Detalle_Pedido {
 
     // Getter and setter
     public Integer getId() {return id;}
-    public void setId(Integer kydetalle) {this.id = id;}
+    public void setId(Integer id) {this.id = id;}
 
     public Pedido getPedido() {return pedido;}
     public void setPedido(Pedido pedido) {this.pedido = pedido;}

@@ -6,6 +6,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +39,12 @@ public class OrderRepo implements OrderRepository {
     public List<Pedido> findByCliente(Integer idCliente) {
         return em.createQuery("SELECT p FROM Pedido p WHERE p.cliente.id = :id",  Pedido.class)
                 .setParameter("id", idCliente).getResultList();
+    }
+
+    // Sumar sub total por cliente
+    @Override
+    public BigDecimal sumSubtotalByClient(Integer idCliente) {
+        return em.createQuery("SELECT COALESCE(SUM(dp.subtotal), 0) FROM Detalle_Pedido dp WHERE dp.pedido.cliente.id = :idCliente", BigDecimal.class)
+                .setParameter("idCliente", idCliente).getSingleResult();
     }
 }

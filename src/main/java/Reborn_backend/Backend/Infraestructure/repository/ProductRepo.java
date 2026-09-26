@@ -7,6 +7,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ProductRepo implements ProductRepository {
@@ -35,6 +36,13 @@ public class ProductRepo implements ProductRepository {
     public List<Producto> findByCategoria(Integer id) {
         return em.createQuery("SELECT p FROM Producto p WHERE p.categoria.id = :id",  Producto.class)
                 .setParameter("id", id).getResultList();
+    }
+
+    //Buscar por id\
+    @Override
+    public Optional<Producto> findById(Integer id){
+        Producto producto = em.find(Producto.class, id);
+        return Optional.ofNullable(producto);
     }
 
     //Eliminar por id

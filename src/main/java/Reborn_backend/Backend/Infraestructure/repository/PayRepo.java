@@ -1,14 +1,16 @@
 package Reborn_backend.Backend.Infraestructure.repository;
 
-import Reborn_backend.Backend.domain.entities.Categoria;
 import Reborn_backend.Backend.domain.entities.Pago;
 import Reborn_backend.Backend.domain.repository.PayRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class PayRepo implements PayRepository {
     @PersistenceContext
     private EntityManager em;
@@ -45,5 +47,12 @@ public class PayRepo implements PayRepository {
         if (pago != null) {
             em.remove(pago);
         }
+    }
+
+    // Sumar monto por cliente
+    @Override
+    public BigDecimal sumMontoByClient(Integer idCliente){
+        return em.createQuery("SELECT COALESCE(SUM(p.monto), 0) FROM Pago p WHERE p.cliente.id = :idCliente", BigDecimal.class)
+                .setParameter("idCliente", idCliente).getSingleResult();
     }
 }
