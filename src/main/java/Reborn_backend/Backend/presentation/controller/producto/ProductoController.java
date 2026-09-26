@@ -41,9 +41,9 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(productoResponse);
     }
 
-    @GetMapping("/categoria/{cat_id}")
-    public ResponseEntity<List<ProductoResponse>> obtenerProductosPorCategoria(@PathVariable Integer cat_id) {
-        List<Producto> productos = getProductByCatalogCase.getProductByCatalog(cat_id);
+    @GetMapping("/categoria/{id}")
+    public ResponseEntity<List<ProductoResponse>> obtenerProductosPorCategoria(@PathVariable Integer id) {
+        List<Producto> productos = getProductByCatalogCase.getProductByCatalog(id);
 
         List<ProductoResponse> productoResponses = productos.stream()
                 .map(producto -> new ProductoResponse(producto.getId(), producto.getNombre(), producto.getDescripcion(), producto.getPrecio()))
