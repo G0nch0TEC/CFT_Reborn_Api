@@ -40,7 +40,7 @@ public class Clientes {
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<Pedido> pedidos;
 
-    @OneToMany(mappedBy = "pago", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<Pago>  pagos;
 
     // Getters y Setters
