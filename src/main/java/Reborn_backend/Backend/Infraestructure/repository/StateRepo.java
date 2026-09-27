@@ -1,7 +1,6 @@
 package Reborn_backend.Backend.Infraestructure.repository;
 
 import Reborn_backend.Backend.domain.entities.Estado;
-import Reborn_backend.Backend.domain.entities.Pedido;
 import Reborn_backend.Backend.domain.repository.StateRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

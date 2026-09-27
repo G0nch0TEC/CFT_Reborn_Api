@@ -13,9 +13,11 @@ public interface ClientRepository {
 
     List<Clientes> findByNombre(String nombre);
 
+    void actualizarEstado(Integer idCliente, Integer idEstado);
+
     List<Clientes> findByEstado(Integer estado);
 
-    public Optional<Clientes> findById(Integer id);
+    Optional<Clientes> findById(Integer id);
 
     void deleteById(Integer id);
 }

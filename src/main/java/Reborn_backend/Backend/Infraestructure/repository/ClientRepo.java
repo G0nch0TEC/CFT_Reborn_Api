@@ -41,6 +41,14 @@ public class ClientRepo implements ClientRepository {
                 .getResultList();
     }
 
+    //Actualizar Estado
+    public void actualizarEstado(Integer idCliente, Integer idEstado){
+        em.createQuery("UPDATE Clientes c SET c.estado.id = :idEstado WHERE c.id = :idCliente")
+                .setParameter("idCliente", idCliente)
+                .setParameter("idEstado", idEstado)
+                .executeUpdate();
+    }
+
     //Buscar por estado
     @Override
     public List<Clientes> findByEstado(Integer idEstado){
