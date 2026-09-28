@@ -20,7 +20,7 @@ public class ProductoController {
     private final CrearProductoCase crearProductoCase;
     private final GetProductByCatalogCase getProductByCatalogCase;
     private final ActualizarProductoCase actualizarProductoCase;
-    private final EliminarProductoCase eliminarProductoCase
+    private final EliminarProductoCase eliminarProductoCase;
 
     public ProductoController(CrearProductoCase crearProductoCase,
                               GetProductByCatalogCase getProductByCatalogCase,
