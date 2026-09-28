@@ -2,6 +2,7 @@ package Reborn_backend.Backend.domain.repository;
 
 import Reborn_backend.Backend.domain.entities.Producto;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +14,9 @@ public interface ProductRepository {
 
     List<Producto> findByCategoria(Integer categoria);
 
-    public Optional<Producto> findById(Integer id);
+    Optional<Producto> findById(Integer id);
+
+    void actualizarProducto(Integer idProducto, String nombre, BigDecimal precio);
 
     void deleteById(Integer id);
 }

@@ -1,8 +1,10 @@
 package Reborn_backend.Backend.presentation.controller.producto;
 
+import Reborn_backend.Backend.domain.dto.request.ActualizarProductoRequest;
 import Reborn_backend.Backend.domain.dto.request.producto.ProductoRequest;
 import Reborn_backend.Backend.domain.dto.response.producto.ProductoResponse;
 import Reborn_backend.Backend.domain.entities.Producto;
+import Reborn_backend.Backend.domain.use_case.producto.ActualizarProductoCase;
 import Reborn_backend.Backend.domain.use_case.producto.CrearProductoCase;
 import Reborn_backend.Backend.domain.use_case.producto.GetProductByCatalogCase;
 import org.springframework.http.HttpStatus;
@@ -16,10 +18,14 @@ import java.util.List;
 public class ProductoController {
     private final CrearProductoCase crearProductoCase;
     private final GetProductByCatalogCase getProductByCatalogCase;
+    private final ActualizarProductoCase actualizarProductoCase;
 
-    public ProductoController(CrearProductoCase crearProductoCase, GetProductByCatalogCase getProductByCatalogCase){
+    public ProductoController(CrearProductoCase crearProductoCase,
+                              GetProductByCatalogCase getProductByCatalogCase,
+                              ActualizarProductoCase actualizarProductoCase){
         this.crearProductoCase = crearProductoCase;
         this.getProductByCatalogCase = getProductByCatalogCase;
+        this.actualizarProductoCase = actualizarProductoCase;
     }
 
     @PostMapping
@@ -27,7 +33,6 @@ public class ProductoController {
 
         Producto producto = new Producto();
         producto.setNombre(productoRequest.getNombre());
-        producto.setDescripcion(productoRequest.getDescripcion());
         producto.setPrecio(productoRequest.getPrecio());
 
         Producto productoGuardado = crearProductoCase.crearProducto(producto, productoRequest.getIdCategoria());
@@ -35,7 +40,6 @@ public class ProductoController {
         ProductoResponse productoResponse = new ProductoResponse(
                 productoGuardado.getId(),
                 productoGuardado.getNombre(),
-                productoGuardado.getDescripcion(),
                 productoGuardado.getPrecio()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(productoResponse);
@@ -46,9 +50,20 @@ public class ProductoController {
         List<Producto> productos = getProductByCatalogCase.getProductByCatalog(id);
 
         List<ProductoResponse> productoResponses = productos.stream()
-                .map(producto -> new ProductoResponse(producto.getId(), producto.getNombre(), producto.getDescripcion(), producto.getPrecio()))
+                .map(producto -> new ProductoResponse(producto.getId(), producto.getNombre(), producto.getPrecio()))
                 .toList();
 
         return ResponseEntity.status(HttpStatus.OK).body(productoResponses);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> actualizarProducto(@PathVariable ActualizarProductoRequest request){
+        actualizarProductoCase.actualizarProducto(
+                request.getId(),
+                request.getNombre(),
+                request.getPrecio()
+        );
+
+        return ResponseEntity.noContent().build();
     }
 }

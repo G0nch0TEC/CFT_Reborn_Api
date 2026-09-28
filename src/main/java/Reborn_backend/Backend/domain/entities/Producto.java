@@ -20,9 +20,6 @@ public class Producto {
     @Column(name = "prod_nombre", nullable = false, length = 80)
     private String nombre;
 
-    @Column(name = "prod_descripcion", length = 150)
-    private String descripcion;
-
     @Column(name = "prod_precio", nullable = false, precision = 10, scale = 2)
     private BigDecimal precio;
 
@@ -42,9 +39,6 @@ public class Producto {
 
     public String getNombre() {return nombre;}
     public void setNombre(String nombre) {this.nombre = nombre;}
-
-    public String getDescripcion() {return descripcion;}
-    public void setDescripcion(String descripcion) {this.descripcion = descripcion;}
 
     public BigDecimal getPrecio() {return precio;}
     public void setPrecio(BigDecimal precio) {this.precio = precio;}

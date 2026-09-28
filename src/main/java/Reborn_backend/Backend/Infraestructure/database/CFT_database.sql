@@ -38,7 +38,6 @@ CREATE TABLE PRODUCTO (
     prod_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     prod_cat_id INT NOT NULL,
     prod_nombre VARCHAR(80) NOT NULL,
-    prod_descripcion VARCHAR(150),
     prod_precio DECIMAL(10,2) NOT NULL,
     prod_estado TINYINT DEFAULT 1 NOT NULL
 );
