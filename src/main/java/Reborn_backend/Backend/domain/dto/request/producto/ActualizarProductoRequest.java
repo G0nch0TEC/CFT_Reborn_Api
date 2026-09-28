@@ -1,4 +1,4 @@
-package Reborn_backend.Backend.domain.dto.request;
+package Reborn_backend.Backend.domain.dto.request.producto;
 
 import java.math.BigDecimal;
 

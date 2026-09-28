@@ -1,6 +1,6 @@
 package Reborn_backend.Backend.presentation.controller.producto;
 
-import Reborn_backend.Backend.domain.dto.request.ActualizarProductoRequest;
+import Reborn_backend.Backend.domain.dto.request.producto.ActualizarProductoRequest;
 import Reborn_backend.Backend.domain.dto.request.producto.ProductoRequest;
 import Reborn_backend.Backend.domain.dto.response.producto.ProductoResponse;
 import Reborn_backend.Backend.domain.entities.Producto;
