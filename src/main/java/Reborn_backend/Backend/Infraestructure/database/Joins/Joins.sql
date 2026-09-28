@@ -20,9 +20,11 @@ ALTER TABLE PEDIDO
         
 ALTER TABLE DETALLE_PEDIDO
 	ADD CONSTRAINT FK_Detalle_Pedido
-		FOREIGN KEY (det_ped_id) REFERENCES PEDIDO(ped_id),
+		FOREIGN KEY (det_ped_id) REFERENCES PEDIDO(ped_id) ON DELETE CASCADE,
 	ADD CONSTRAINT FK_Detalle_Pedido2
 		FOREIGN KEY (det_prod_id) REFERENCES PRODUCTO(prod_id);
+        
+
         
         
 ALTER TABLE PAGO
