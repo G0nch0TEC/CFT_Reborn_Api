@@ -20,6 +20,11 @@ public class Pedido {
     @Column(name="ped_fecha", updatable = false, nullable = false)
     private LocalDateTime fechapedido;
 
+    @PrePersist
+    protected void onCreate() {
+        fechapedido = LocalDateTime.now();
+    }
+
     // Getter and setter
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}

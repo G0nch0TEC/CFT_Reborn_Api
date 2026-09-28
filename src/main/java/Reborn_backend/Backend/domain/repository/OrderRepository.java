@@ -15,4 +15,6 @@ public interface OrderRepository {
     List<Pedido> findByCliente(Integer idClient);
 
     BigDecimal sumSubtotalByClient(Integer idCliente);
+
+    void DeleteById(Pedido p);
 }

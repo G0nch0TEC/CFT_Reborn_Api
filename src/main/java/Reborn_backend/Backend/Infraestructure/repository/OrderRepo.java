@@ -1,5 +1,6 @@
 package Reborn_backend.Backend.Infraestructure.repository;
 
+import Reborn_backend.Backend.domain.entities.Detalle_Pedido;
 import Reborn_backend.Backend.domain.entities.Pedido;
 import Reborn_backend.Backend.domain.repository.OrderRepository;
 import jakarta.persistence.EntityManager;
@@ -46,5 +47,14 @@ public class OrderRepo implements OrderRepository {
     public BigDecimal sumSubtotalByClient(Integer idCliente) {
         return em.createQuery("SELECT COALESCE(SUM(dp.subtotal), 0) FROM Detalle_Pedido dp WHERE dp.pedido.cliente.id = :idCliente", BigDecimal.class)
                 .setParameter("idCliente", idCliente).getSingleResult();
+    }
+
+    //Eliminar por id
+    @Override
+    public void DeleteById(Pedido p){
+        Pedido pedido = em.find(Pedido.class, p.getId());
+        if (pedido!=null){
+            em.remove(pedido);
+        }
     }
 }
