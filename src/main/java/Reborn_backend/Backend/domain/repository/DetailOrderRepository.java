@@ -10,5 +10,7 @@ public interface DetailOrderRepository {
 
     List<Detalle_Pedido> findByPedido(Integer idPedido);
 
+    void actualizarDetalle(Integer idDetalle, Integer cantidad);
+
     void DeleteById(Detalle_Pedido dp);
 }

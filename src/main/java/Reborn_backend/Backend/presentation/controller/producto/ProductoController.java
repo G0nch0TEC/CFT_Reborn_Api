@@ -61,9 +61,9 @@ public class ProductoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> actualizarProducto(@PathVariable ActualizarProductoRequest request){
+    public ResponseEntity<Void> actualizarProducto(@PathVariable Integer id, ActualizarProductoRequest request){
         actualizarProductoCase.actualizarProducto(
-                request.getId(),
+                id,
                 request.getNombre(),
                 request.getPrecio()
         );

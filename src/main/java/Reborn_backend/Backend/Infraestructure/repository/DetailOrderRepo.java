@@ -32,6 +32,14 @@ public class DetailOrderRepo implements DetailOrderRepository {
                 .setParameter("id", idPedido).getResultList();
     }
 
+    //Actualizar Detalle
+    public void actualizarDetalle(Integer idDetalle, Integer cantidad){
+        em.createQuery("UPDATE Detalle_Pedido dp SET dp.cantidad = :cantidad, dp.subtotal = dp.preciounitario * :cantidad WHERE dp.id = :idDetalle")
+                .setParameter("idDetalle", idDetalle)
+                .setParameter("cantidad", cantidad)
+                .executeUpdate();
+    }
+
     //Eliminar por id
     @Override
     public void DeleteById(Detalle_Pedido dp){
