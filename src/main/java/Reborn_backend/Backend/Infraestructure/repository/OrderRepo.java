@@ -51,8 +51,8 @@ public class OrderRepo implements OrderRepository {
 
     //Eliminar por id
     @Override
-    public void DeleteById(Pedido p){
-        Pedido pedido = em.find(Pedido.class, p.getId());
+    public void deleteById(Integer id){
+        Pedido pedido = em.find(Pedido.class, id);
         if (pedido!=null){
             em.remove(pedido);
         }

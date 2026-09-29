@@ -16,5 +16,5 @@ public interface OrderRepository {
 
     BigDecimal sumSubtotalByClient(Integer idCliente);
 
-    void DeleteById(Pedido p);
+    void deleteById(Integer id);
 }

@@ -12,6 +12,6 @@ public class EliminarDetalleCase {
     }
 
     public void eliminarDetalle(Integer idCliente){
-        detailOrderRepository.DeleteById(idCliente);
+        detailOrderRepository.deleteById(idCliente);
     }
 }

@@ -12,6 +12,7 @@ import Reborn_backend.Backend.domain.use_case.detalle_pedido.ActualizarDetalleCa
 import Reborn_backend.Backend.domain.use_case.detalle_pedido.EliminarDetalleCase;
 import Reborn_backend.Backend.domain.use_case.detalle_pedido.GetDetallePorPedidoCase;
 import Reborn_backend.Backend.domain.use_case.pedido.CrearPedidoCase;
+import Reborn_backend.Backend.domain.use_case.pedido.EliminarPedidoCase;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,17 +26,20 @@ public class PedidoController {
     private final GetDetallePorPedidoCase getDetallePorPedidoCase;
     private final ActualizarDetalleCase actualizarDetalleCase;
     private final EliminarDetalleCase eliminarDetalleCase;
+    private final EliminarPedidoCase eliminarPedidoCase;
 
     public PedidoController(CrearPedidoCase crearPedidoCase,
                             BuscarClienteCase buscarClienteCase,
                             GetDetallePorPedidoCase getDetallePorPedidoCase,
                             ActualizarDetalleCase actualizarDetalleCase,
-                            EliminarDetalleCase eliminarDetalleCase) {
+                            EliminarDetalleCase eliminarDetalleCase,
+                            EliminarPedidoCase eliminarPedidoCase) {
         this.crearPedidoCase = crearPedidoCase;
         this.buscarClienteCase = buscarClienteCase;
         this.getDetallePorPedidoCase = getDetallePorPedidoCase;
         this.actualizarDetalleCase = actualizarDetalleCase;
         this.eliminarDetalleCase = eliminarDetalleCase;
+        this.eliminarPedidoCase = eliminarPedidoCase;
     }
 
     @PostMapping
@@ -88,4 +92,10 @@ public class PedidoController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarPedido(@PathVariable Integer id){
+        eliminarPedidoCase.eliminarPedido(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
