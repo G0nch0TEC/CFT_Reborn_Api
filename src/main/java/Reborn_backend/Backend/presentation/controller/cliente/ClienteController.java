@@ -44,7 +44,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}/saldo")
-    public ResponseEntity<SaldoResponse>  saldoCliente(@PathVariable Integer id){
+    public ResponseEntity<SaldoResponse>  getSaldoCliente(@PathVariable Integer id){
         BigDecimal saldo = calcularSaldoClienteCase.calcularSaldoCliente(id);
 
         SaldoResponse saldoResponse = new SaldoResponse(saldo);

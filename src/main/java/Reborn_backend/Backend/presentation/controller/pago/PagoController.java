@@ -71,7 +71,8 @@ public class PagoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> actualizarPago(@PathVariable Integer id, ActualizarPagoRequest request){
+    public ResponseEntity<Void> actualizarPago(@PathVariable Integer id,
+                                               @RequestBody ActualizarPagoRequest request){
         actualizarPagoCase.actualizarPago(
                 id,
                 request.getMonto()

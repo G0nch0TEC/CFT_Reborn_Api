@@ -19,7 +19,8 @@ public class DetallePedidoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> actualizarDetallePedido(@PathVariable Integer id, ActualizarDetalleRequest request){
+    public ResponseEntity<Void> actualizarDetallePedido(@PathVariable Integer id,
+                                                        @RequestBody ActualizarDetalleRequest request){
         actualizarDetalleCase.actualizarDetalle(
                 id,
                 request.getCantidad()
