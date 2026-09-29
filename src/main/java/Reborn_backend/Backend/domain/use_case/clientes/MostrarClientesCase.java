@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BuscarPorNombreCase {
+public class MostrarClientesCase {
     private final ClientRepository clientRepository;
 
-    public BuscarPorNombreCase(ClientRepository clientRepository){
+    public MostrarClientesCase(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 
-    public List<Clientes> buscarPorNombre(String nombre){
-        return clientRepository.findByNombre(nombre);
+    public List<Clientes> mostrarClientes(){
+        return clientRepository.findall();
     }
 }

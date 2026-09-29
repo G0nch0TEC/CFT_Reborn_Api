@@ -4,13 +4,16 @@ import Reborn_backend.Backend.domain.dto.request.cliente.ClienteRequest;
 import Reborn_backend.Backend.domain.dto.response.SaldoResponse;
 import Reborn_backend.Backend.domain.dto.response.cliente.ClienteResponse;
 import Reborn_backend.Backend.domain.entities.Clientes;
+import Reborn_backend.Backend.domain.use_case.clientes.BuscarPorNombreCase;
 import Reborn_backend.Backend.domain.use_case.clientes.CalcularSaldoClienteCase;
 import Reborn_backend.Backend.domain.use_case.clientes.CrearClienteCase;
+import Reborn_backend.Backend.domain.use_case.clientes.MostrarClientesCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/cliente")
@@ -19,12 +22,18 @@ public class ClienteController {
     //Dependencia
     private final CrearClienteCase crearClienteCase;
     private final CalcularSaldoClienteCase calcularSaldoClienteCase;
+    private final BuscarPorNombreCase buscarPorNombreCase;
+    private final MostrarClientesCase mostrarClientesCase;
 
     //Constructor
     public ClienteController(CrearClienteCase crearClienteCase,
-                             CalcularSaldoClienteCase calcularSaldoClienteCase) {
+                             CalcularSaldoClienteCase calcularSaldoClienteCase,
+                             BuscarPorNombreCase buscarPorNombreCase,
+                             MostrarClientesCase mostrarClientesCase) {
         this.crearClienteCase = crearClienteCase;
         this.calcularSaldoClienteCase = calcularSaldoClienteCase;
+        this.buscarPorNombreCase = buscarPorNombreCase;
+        this.mostrarClientesCase = mostrarClientesCase;
     }
 
     @PostMapping
@@ -41,6 +50,32 @@ public class ClienteController {
                 createClient.getDescripcion()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ClienteResponse>> mostrarClientes() {
+        List<Clientes> clientes = mostrarClientesCase.mostrarClientes();
+
+        List<ClienteResponse> clienteResponse = clientes.stream()
+                .map(cliente -> new ClienteResponse(
+                        cliente.getNombre(),
+                        cliente.getDescripcion()))
+                .toList();
+
+        return ResponseEntity.ok(clienteResponse);
+    }
+
+    @GetMapping(params = "nombre")
+    public ResponseEntity<List<ClienteResponse>>  buscarPorNombre(@RequestParam String nombre) {
+        List<Clientes> clientes = buscarPorNombreCase.buscarPorNombre(nombre);
+
+        List<ClienteResponse> clientesResponse = clientes.stream()
+                .map(cliente -> new ClienteResponse(
+                        cliente.getNombre(),
+                        cliente.getDescripcion()))
+                .toList();
+
+        return ResponseEntity.status(HttpStatus.OK).body(clientesResponse);
     }
 
     @GetMapping("/{id}/saldo")
