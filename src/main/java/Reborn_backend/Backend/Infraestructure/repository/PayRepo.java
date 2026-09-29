@@ -39,6 +39,13 @@ public class PayRepo implements PayRepository {
         Pago pago = em.find(Pago.class, id);
         return Optional.ofNullable(pago);
     }
+    @Override
+    public void actualizarPago(Integer idPago, BigDecimal monto){
+        em.createQuery("UPDATE Pago p SET p.monto = :monto")
+                .setParameter("idPago", idPago)
+                .setParameter("monto", monto)
+                .executeUpdate();
+    }
 
     //Eliminar por id
     @Override

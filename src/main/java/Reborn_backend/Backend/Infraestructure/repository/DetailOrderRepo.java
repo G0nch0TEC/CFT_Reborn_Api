@@ -1,7 +1,6 @@
 package Reborn_backend.Backend.Infraestructure.repository;
 
 import Reborn_backend.Backend.domain.entities.Detalle_Pedido;
-import Reborn_backend.Backend.domain.entities.Pedido;
 import Reborn_backend.Backend.domain.repository.DetailOrderRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -42,7 +41,7 @@ public class DetailOrderRepo implements DetailOrderRepository {
 
     //Eliminar por id
     @Override
-    public void DeleteById(Integer id){
+    public void deleteById(Integer id){
         Detalle_Pedido detalle_pedido = em.find(Detalle_Pedido.class, id);
         if (detalle_pedido!=null){
             em.remove(detalle_pedido);

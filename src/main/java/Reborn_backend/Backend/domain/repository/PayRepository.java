@@ -16,5 +16,7 @@ public interface PayRepository {
 
      void deleteById(Integer id);
 
+     void actualizarPago(Integer idPago, BigDecimal monto);
+
      BigDecimal sumMontoByClient(Integer idCliente);
 }
