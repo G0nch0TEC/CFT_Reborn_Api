@@ -2,17 +2,17 @@ package Reborn_backend.Backend.domain.use_case.clientes;
 
 import Reborn_backend.Backend.domain.entities.Clientes;
 import Reborn_backend.Backend.domain.repository.ClientRepository;
-import org.springframework.stereotype.Service;
 
-@Service
-public class BuscarClienteCase {
+import java.util.List;
+
+public class BuscarPorNombreCase {
     private final ClientRepository clientRepository;
 
-    public BuscarClienteCase(ClientRepository clientRepository){
+    public BuscarPorNombreCase(ClientRepository clientRepository){
         this.clientRepository = clientRepository;
     }
 
-    public Clientes buscarCliente(Integer id){
-        return clientRepository.findById(id).orElse(null);
+    public List<Clientes> buscarPorNombre(String nombre){
+        return clientRepository.findByNombre(nombre);
     }
 }
