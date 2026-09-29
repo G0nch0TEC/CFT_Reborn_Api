@@ -1,9 +1,11 @@
 package Reborn_backend.Backend.domain.use_case.detalle_pedido;
 
 import Reborn_backend.Backend.domain.repository.DetailOrderRepository;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+@Service
 public class ActualizarDetalleCase {
     private final DetailOrderRepository detailOrderRepository;
     

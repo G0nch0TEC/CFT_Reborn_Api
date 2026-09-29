@@ -39,7 +39,7 @@ public class CategoriaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoriaResponse>> listarCategoria() {
+    public ResponseEntity<List<CategoriaResponse>> mostrarCategoria() {
         List<Categoria> categorias = obtenerCategoriaCase.obtenerCategorias();
 
         List<CategoriaResponse> categoriasResponse = categorias.stream()

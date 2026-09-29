@@ -12,5 +12,5 @@ public interface DetailOrderRepository {
 
     void actualizarDetalle(Integer idDetalle, Integer cantidad);
 
-    void DeleteById(Detalle_Pedido dp);
+    void DeleteById(Integer id);
 }

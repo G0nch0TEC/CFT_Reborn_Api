@@ -42,8 +42,8 @@ public class DetailOrderRepo implements DetailOrderRepository {
 
     //Eliminar por id
     @Override
-    public void DeleteById(Detalle_Pedido dp){
-        Detalle_Pedido detalle_pedido = em.find(Detalle_Pedido.class, dp.getId());
+    public void DeleteById(Integer id){
+        Detalle_Pedido detalle_pedido = em.find(Detalle_Pedido.class, id);
         if (detalle_pedido!=null){
             em.remove(detalle_pedido);
         }
