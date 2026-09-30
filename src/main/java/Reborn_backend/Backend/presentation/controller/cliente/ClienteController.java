@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,18 +23,21 @@ public class ClienteController {
     private final BuscarPorNombreCase buscarPorNombreCase;
     private final MostrarClientesCase mostrarClientesCase;
     private final GetClientByEstado getClientByEstado;
+    private final EliminarClienteCase eliminarClienteCase;
 
     //Constructor
     public ClienteController(CrearClienteCase crearClienteCase,
                              CalcularSaldoClienteCase calcularSaldoClienteCase,
                              BuscarPorNombreCase buscarPorNombreCase,
                              MostrarClientesCase mostrarClientesCase,
-                             GetClientByEstado getClientByEstado) {
+                             GetClientByEstado getClientByEstado,
+                             EliminarClienteCase eliminarClienteCase) {
         this.crearClienteCase = crearClienteCase;
         this.calcularSaldoClienteCase = calcularSaldoClienteCase;
         this.buscarPorNombreCase = buscarPorNombreCase;
         this.mostrarClientesCase = mostrarClientesCase;
         this.getClientByEstado = getClientByEstado;
+        this.eliminarClienteCase = eliminarClienteCase;
     }
 
     @PostMapping
@@ -102,5 +104,12 @@ public class ClienteController {
         SaldoResponse saldoResponse = new SaldoResponse(saldo);
 
         return ResponseEntity.ok(saldoResponse);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> eliminarCliente(@RequestParam Integer id) {
+        eliminarClienteCase.eliminarCliente(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
