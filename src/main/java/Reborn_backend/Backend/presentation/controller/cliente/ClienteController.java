@@ -83,7 +83,7 @@ public class ClienteController {
     }
 
     @GetMapping("/estado/{id}")
-    public ResponseEntity<List<MostrarClientesPorEstadoResponse>> mostrarEstadoPorCliente(@PathVariable Integer id) {
+    public ResponseEntity<List<MostrarClientesPorEstadoResponse>> mostrarClientePorEstado(@PathVariable Integer id) {
         List<Clientes> clientes = getClientByEstado.mostrarClientesPorEstado(id);
 
         List<MostrarClientesPorEstadoResponse> mostrarClientesPorEstadoResponse = clientes

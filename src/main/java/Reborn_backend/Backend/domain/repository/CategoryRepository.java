@@ -12,6 +12,8 @@ public interface CategoryRepository {
 
     Optional<Categoria> findById(Integer id);
 
+    void actualizarCategoria(Integer id, String nombre);
+
     boolean existsByNombre(String nombre);
 
     void deleteById(Integer id);

@@ -7,6 +7,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +31,14 @@ public class CategoryRepo implements CategoryRepository {
     @Override
     public List<Categoria> findAll() {
         return em.createQuery("SELECT c FROM Categoria c", Categoria.class).getResultList();
+    }
+
+    //Actualizar Categoria
+    public void actualizarCategoria(Integer id, String nombre){
+        em.createQuery("UPDATE Categoria c SET c.nombre = :nombre WHERE c.id = :id")
+                .setParameter("id", id)
+                .setParameter("nombre", nombre)
+                .executeUpdate();
     }
 
     //Buscar por id

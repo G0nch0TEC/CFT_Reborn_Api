@@ -3,6 +3,7 @@ package Reborn_backend.Backend.presentation.controller.categoria;
 import Reborn_backend.Backend.domain.dto.request.categoria.CategoriaRequest;
 import Reborn_backend.Backend.domain.dto.response.categoria.CategoriaResponse;
 import Reborn_backend.Backend.domain.entities.Categoria;
+import Reborn_backend.Backend.domain.use_case.categoria.ActualizarCategoriaCase;
 import Reborn_backend.Backend.domain.use_case.categoria.CrearCategoriaCase;
 import Reborn_backend.Backend.domain.use_case.categoria.ObtenerCategoriaCase;
 import org.springframework.http.HttpStatus;
@@ -17,10 +18,14 @@ public class CategoriaController {
 
     private final CrearCategoriaCase crearCategoriaCase;
     private final ObtenerCategoriaCase obtenerCategoriaCase;
+    private final ActualizarCategoriaCase actualizarCategoriaCase;
 
-    public CategoriaController(CrearCategoriaCase crearCategoriaCase, ObtenerCategoriaCase obtenerCategoriaCase){
+    public CategoriaController(CrearCategoriaCase crearCategoriaCase,
+                               ObtenerCategoriaCase obtenerCategoriaCase,
+                               ActualizarCategoriaCase actualizarCategoriaCase){
         this.crearCategoriaCase = crearCategoriaCase;
         this.obtenerCategoriaCase = obtenerCategoriaCase;
+        this.actualizarCategoriaCase = actualizarCategoriaCase;
     }
 
     @PostMapping
@@ -36,6 +41,17 @@ public class CategoriaController {
                 crearCategoria.getNombre()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaResponse);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> actualizarCategoria(@PathVariable Integer id,
+                                                    @RequestBody CategoriaRequest request){
+        actualizarCategoriaCase.actualizarCategoria(
+                id,
+                request.getNombre()
+        );
+
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping
