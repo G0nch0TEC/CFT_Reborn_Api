@@ -3,16 +3,15 @@ package Reborn_backend.Backend.presentation.controller.cliente;
 import Reborn_backend.Backend.domain.dto.request.cliente.ClienteRequest;
 import Reborn_backend.Backend.domain.dto.response.SaldoResponse;
 import Reborn_backend.Backend.domain.dto.response.cliente.ClienteResponse;
+import Reborn_backend.Backend.domain.dto.response.cliente.MostrarClientesPorEstadoResponse;
 import Reborn_backend.Backend.domain.entities.Clientes;
-import Reborn_backend.Backend.domain.use_case.clientes.BuscarPorNombreCase;
-import Reborn_backend.Backend.domain.use_case.clientes.CalcularSaldoClienteCase;
-import Reborn_backend.Backend.domain.use_case.clientes.CrearClienteCase;
-import Reborn_backend.Backend.domain.use_case.clientes.MostrarClientesCase;
+import Reborn_backend.Backend.domain.use_case.clientes.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,16 +23,19 @@ public class ClienteController {
     private final CalcularSaldoClienteCase calcularSaldoClienteCase;
     private final BuscarPorNombreCase buscarPorNombreCase;
     private final MostrarClientesCase mostrarClientesCase;
+    private final GetClientByEstado getClientByEstado;
 
     //Constructor
     public ClienteController(CrearClienteCase crearClienteCase,
                              CalcularSaldoClienteCase calcularSaldoClienteCase,
                              BuscarPorNombreCase buscarPorNombreCase,
-                             MostrarClientesCase mostrarClientesCase) {
+                             MostrarClientesCase mostrarClientesCase,
+                             GetClientByEstado getClientByEstado) {
         this.crearClienteCase = crearClienteCase;
         this.calcularSaldoClienteCase = calcularSaldoClienteCase;
         this.buscarPorNombreCase = buscarPorNombreCase;
         this.mostrarClientesCase = mostrarClientesCase;
+        this.getClientByEstado = getClientByEstado;
     }
 
     @PostMapping
@@ -76,6 +78,21 @@ public class ClienteController {
                 .toList();
 
         return ResponseEntity.status(HttpStatus.OK).body(clientesResponse);
+    }
+
+    @GetMapping("/estado/{id}")
+    public ResponseEntity<List<MostrarClientesPorEstadoResponse>> mostrarEstadoPorCliente(@PathVariable Integer id) {
+        List<Clientes> clientes = getClientByEstado.mostrarClientesPorEstado(id);
+
+        List<MostrarClientesPorEstadoResponse> mostrarClientesPorEstadoResponse = clientes
+                .stream()
+                .map(cliente -> new MostrarClientesPorEstadoResponse(
+                        cliente.getId(),
+                        cliente.getNombre(),
+                        cliente.getDescripcion()))
+                .toList();
+
+        return ResponseEntity.status(HttpStatus.OK).body(mostrarClientesPorEstadoResponse);
     }
 
     @GetMapping("/{id}/saldo")
