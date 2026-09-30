@@ -1,7 +1,6 @@
 package Reborn_backend.Backend.Infraestructure.repository;
 
 import Reborn_backend.Backend.domain.entities.Clientes;
-import Reborn_backend.Backend.domain.entities.Producto;
 import Reborn_backend.Backend.domain.repository.ClientRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -46,6 +45,15 @@ public class ClientRepo implements ClientRepository {
         em.createQuery("UPDATE Clientes c SET c.estado.id = :idEstado WHERE c.id = :idCliente")
                 .setParameter("idCliente", idCliente)
                 .setParameter("idEstado", idEstado)
+                .executeUpdate();
+    }
+
+    //Actualizar Cliente
+    public void actualizarCliente(Integer idCliente, String nombre, String descripcion){
+        em.createQuery("UPDATE Clientes c SET c.nombre = :nombre, c.descripcion = :descripcion WHERE c.id = :idCliente")
+                .setParameter("idCliente", idCliente)
+                .setParameter("nombre", nombre)
+                .setParameter("descripcion", descripcion)
                 .executeUpdate();
     }
 

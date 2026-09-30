@@ -15,6 +15,8 @@ public interface ClientRepository {
 
     void actualizarEstado(Integer idCliente, Integer idEstado);
 
+    void actualizarCliente(Integer idCliente, String nombre, String descripcion);
+
     List<Clientes> findByEstado(Integer estado);
 
     Optional<Clientes> findById(Integer id);

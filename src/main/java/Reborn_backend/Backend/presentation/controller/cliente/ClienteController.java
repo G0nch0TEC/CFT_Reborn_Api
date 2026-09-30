@@ -24,6 +24,7 @@ public class ClienteController {
     private final MostrarClientesCase mostrarClientesCase;
     private final GetClientByEstado getClientByEstado;
     private final EliminarClienteCase eliminarClienteCase;
+    private final ActualizarClienteCase actualizarClienteCase;
 
     //Constructor
     public ClienteController(CrearClienteCase crearClienteCase,
@@ -31,13 +32,15 @@ public class ClienteController {
                              BuscarPorNombreCase buscarPorNombreCase,
                              MostrarClientesCase mostrarClientesCase,
                              GetClientByEstado getClientByEstado,
-                             EliminarClienteCase eliminarClienteCase) {
+                             EliminarClienteCase eliminarClienteCase,
+                             ActualizarClienteCase actualizarClienteCase) {
         this.crearClienteCase = crearClienteCase;
         this.calcularSaldoClienteCase = calcularSaldoClienteCase;
         this.buscarPorNombreCase = buscarPorNombreCase;
         this.mostrarClientesCase = mostrarClientesCase;
         this.getClientByEstado = getClientByEstado;
         this.eliminarClienteCase = eliminarClienteCase;
+        this.actualizarClienteCase = actualizarClienteCase;
     }
 
     @PostMapping
@@ -106,8 +109,20 @@ public class ClienteController {
         return ResponseEntity.ok(saldoResponse);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> eliminarCliente(@RequestParam Integer id) {
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> actualizarCliente(@PathVariable Integer id,
+                                                  @RequestBody ClienteRequest request){
+        actualizarClienteCase.actualizarCliente(
+                id,
+                request.getNombre(),
+                request.getDescripcion()
+        );
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarCliente(@PathVariable Integer id) {
         eliminarClienteCase.eliminarCliente(id);
 
         return ResponseEntity.noContent().build();
