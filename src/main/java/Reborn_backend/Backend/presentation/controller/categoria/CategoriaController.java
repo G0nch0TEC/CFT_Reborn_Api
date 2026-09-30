@@ -5,6 +5,7 @@ import Reborn_backend.Backend.domain.dto.response.categoria.CategoriaResponse;
 import Reborn_backend.Backend.domain.entities.Categoria;
 import Reborn_backend.Backend.domain.use_case.categoria.ActualizarCategoriaCase;
 import Reborn_backend.Backend.domain.use_case.categoria.CrearCategoriaCase;
+import Reborn_backend.Backend.domain.use_case.categoria.EliminarCategoriaCase;
 import Reborn_backend.Backend.domain.use_case.categoria.ObtenerCategoriaCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,16 @@ public class CategoriaController {
     private final CrearCategoriaCase crearCategoriaCase;
     private final ObtenerCategoriaCase obtenerCategoriaCase;
     private final ActualizarCategoriaCase actualizarCategoriaCase;
+    private final EliminarCategoriaCase eliminarCategoriaCase;
 
     public CategoriaController(CrearCategoriaCase crearCategoriaCase,
                                ObtenerCategoriaCase obtenerCategoriaCase,
-                               ActualizarCategoriaCase actualizarCategoriaCase){
+                               ActualizarCategoriaCase actualizarCategoriaCase,
+                               EliminarCategoriaCase eliminarCategoriaCase){
         this.crearCategoriaCase = crearCategoriaCase;
         this.obtenerCategoriaCase = obtenerCategoriaCase;
         this.actualizarCategoriaCase = actualizarCategoriaCase;
+        this.eliminarCategoriaCase = eliminarCategoriaCase;
     }
 
     @PostMapping
@@ -63,5 +67,12 @@ public class CategoriaController {
                 .toList();
 
         return ResponseEntity.status(HttpStatus.OK).body(categoriasResponse);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarCategoria(@PathVariable Integer id){
+        eliminarCategoriaCase.eliminarCategoria(id);
+
+        return  ResponseEntity.noContent().build();
     }
 }
