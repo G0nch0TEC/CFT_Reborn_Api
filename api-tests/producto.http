@@ -1,0 +1,24 @@
+### Crear Producto
+POST http://localhost:8080/producto
+Content-Type: application/json
+
+{
+  "nombre": "Jugo de Papaya",
+  "precio": 4.50,
+  "idCategoria": 2
+}
+
+### Obtener Producto Por Categoria
+GET http://localhost:8080/producto/categoria/2
+
+### Actualizar Producto
+PATCH http://localhost:8080/producto/2
+Content-Type: application/json
+
+{
+  "nombre": "Jugo de Manzana",
+  "precio": 3.50
+}
+
+### Eliminar Producto
+DELETE http://localhost:8080/producto/1

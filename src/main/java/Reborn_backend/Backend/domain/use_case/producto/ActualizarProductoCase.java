@@ -2,6 +2,7 @@ package Reborn_backend.Backend.domain.use_case.producto;
 
 import Reborn_backend.Backend.domain.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -13,6 +14,7 @@ public class ActualizarProductoCase {
         this.productRepository = productRepository;
     }
 
+    @Transactional
     public void actualizarProducto(Integer idProducto, String nuevoNombre, BigDecimal nuevoPrecio){
 
         if (nuevoNombre.length() > 80){

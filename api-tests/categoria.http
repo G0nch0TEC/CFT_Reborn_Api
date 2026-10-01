@@ -1,0 +1,23 @@
+### Crear Categoria
+POST http://localhost:8080/categoria
+Content-Type: application/json
+
+{
+  "nombre": "Jugos"
+}
+###
+
+### Actualizar Categoria
+PATCH http://localhost:8080/categoria/1
+Content-Type: application/json
+
+{
+  "nombre": "Golosinas"
+}
+
+
+### Mostrar Categorias
+GET http://localhost:8080/categoria
+
+### Eliminar Categoria
+DELETE http://localhost:8080/categoria/1
