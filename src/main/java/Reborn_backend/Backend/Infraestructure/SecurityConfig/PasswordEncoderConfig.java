@@ -1,16 +1,15 @@
-package Reborn_backend.Backend.Infraestructure.config;
+package Reborn_backend.Backend.Infraestructure.SecurityConfig;
 
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-public class SecurityConfig {
-
+public class PasswordEncoderConfig {
+    // Encriptacion de contraseña
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public org.springframework.security.crypto.password.PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
