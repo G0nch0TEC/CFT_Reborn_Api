@@ -4,6 +4,7 @@ import Reborn_backend.Backend.domain.entities.Pago;
 import Reborn_backend.Backend.domain.repository.PayRepository;
 import Reborn_backend.Backend.domain.use_case.clientes.CambiarEstadoClienteCase;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CrearPagoCase {
@@ -15,6 +16,7 @@ public class CrearPagoCase {
         this.cambiarEstadoClienteCase = cambiarEstadoClienteCase;
     }
 
+    @Transactional
     public Pago crearPago(Pago pago) {
         cambiarEstadoClienteCase.cambiarEstadoCliente(pago.getCliente().getId());
         return payRepository.save(pago);

@@ -8,6 +8,7 @@ import Reborn_backend.Backend.domain.repository.OrderRepository;
 import Reborn_backend.Backend.domain.use_case.clientes.CambiarEstadoClienteCase;
 import Reborn_backend.Backend.domain.use_case.detalle_pedido.CrearDetalleCase;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CrearPedidoCase {
@@ -23,6 +24,7 @@ public class CrearPedidoCase {
         this.cambiarEstadoClienteCase = cambiarEstadoClienteCase;
     }
 
+    @Transactional
     public Pedido crearPedido(Pedido pedido, PedidoRequest pedidoRequest) {
 
         // Guardamos el pedido

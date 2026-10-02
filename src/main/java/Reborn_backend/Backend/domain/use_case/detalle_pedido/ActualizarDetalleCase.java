@@ -2,6 +2,7 @@ package Reborn_backend.Backend.domain.use_case.detalle_pedido;
 
 import Reborn_backend.Backend.domain.repository.DetailOrderRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -12,7 +13,8 @@ public class ActualizarDetalleCase {
     public ActualizarDetalleCase(DetailOrderRepository detailOrderRepository){
         this.detailOrderRepository = detailOrderRepository;
     }
-    
+
+    @Transactional
     public void actualizarDetalle(Integer idDetalle, Integer cantidad){
 
         if (cantidad == null || cantidad <= 0){

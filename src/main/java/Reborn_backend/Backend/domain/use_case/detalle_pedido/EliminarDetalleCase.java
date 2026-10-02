@@ -2,6 +2,7 @@ package Reborn_backend.Backend.domain.use_case.detalle_pedido;
 
 import Reborn_backend.Backend.domain.repository.DetailOrderRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EliminarDetalleCase {
@@ -11,6 +12,7 @@ public class EliminarDetalleCase {
         this.detailOrderRepository = detailOrderRepository;
     }
 
+    @Transactional
     public void eliminarDetalle(Integer idCliente){
         detailOrderRepository.deleteById(idCliente);
     }
