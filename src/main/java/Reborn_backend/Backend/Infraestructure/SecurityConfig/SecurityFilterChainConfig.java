@@ -11,6 +11,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityFilterChainConfig {
+    private final AuthenticationProviderConfig authenticationProviderConfig;
+
+    public SecurityFilterChainConfig(AuthenticationProviderConfig authenticationProviderConfig){
+        this.authenticationProviderConfig = authenticationProviderConfig;
+    }
 
 
     @Bean
@@ -21,7 +26,8 @@ public class SecurityFilterChainConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/usuario", "/auth").permitAll()
                         .anyRequest()
-                        .authenticated());
+                        .authenticated())
+                .authenticationProvider(authenticationProviderConfig.authenticationProvider());
 
         return http.build();
     }
